@@ -1,5 +1,6 @@
 <script setup>
-    import {ref} from 'vue'
+    import {ref} from 'vue';
+    import { saveAs } from "file-saver";
     import MainInfos from  "./components/MainInfos/MainInfos";
     import BasicInfos from "./components/BasicInfos/BasicInfos";
 //    import CardsTabs from "./components/Cards/CardsTabs"
@@ -41,7 +42,7 @@
       }
     }
 
-    const file = ref(null);
+    //const file = ref(null);
     const fileInput = ref(null);
     //const triggerFileInput = () => { fileInput.value.click(); }; 
     // const onFileChange = (event) => { file.value = event.target.files[0]; // Vous pouvez ajouter du code ici pour gérer le fichier téléchargé };
@@ -51,9 +52,41 @@
     } 
     
     function onFileChange(event) {
-        file.value = event.target.files[0];
-        console.log(file.value)
+        try {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = event => {
+                const newState = JSON.parse(event.target.result);
+                if (!validateJson(newState)) {
+                    return window.alert("Erreur lors du chargement du fichier : Not valid Json");
+                }
+//            this.$store.commit("loadState", newState);
+                legend.$state = newState
+                //console.log(newState);
+            };
+            // Start reading file
+            
+            reader.readAsText(file);
+        } catch (event) {
+            window.alert("Erreur lors du chargement du fichier (1520)");
+        }
         // Vous pouvez ajouter du code ici pour gérer le fichier téléchargé
+    }
+
+    // Simple validation of Loading JSON
+    function validateJson(object) {
+      if ( !object.name ||  !Array.isArray(object.cards)) {
+        return false;
+      }
+      return true;
+    }
+
+    function saveFile() {
+      const blob = new Blob([JSON.stringify(legend.$state)], {
+        type: "application/json"
+      });
+      saveAs(blob, legend.$state.slug);
     }
     /*function loadFile(e) {
         try {
@@ -112,7 +145,7 @@
                     <v-list-item-content> <v-list-item-title>Charger</v-list-item-title> </v-list-item-content>
                 </v-list-item>
                 <input ref="fileInput" type="file" style="display: none" @change="onFileChange" />
-                <v-list-item
+                <v-list-item @click="saveFile"
                     prepend-icon="mdi-content-save"
                     title="Enregistrer"
                 ></v-list-item>
@@ -159,7 +192,7 @@
                         <v-window-item value="cards">
                             <v-row>
                             <!--<v-navigation-drawer permanent height="100vh" position="left" >-->
-                            <v-col cols="3" md="3">
+                            <v-col cols="4" md="4">
                                 <v-btn  prepend-icon="mdi-plus" outline right>Nouvelle carte</v-btn><br>
                                 
                                 <v-table id="cardList" >
