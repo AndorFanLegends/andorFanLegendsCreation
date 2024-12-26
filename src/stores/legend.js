@@ -1,4 +1,5 @@
 import { defineStore} from 'pinia'; // , storeToRefs
+import Nanoid from 'nanoid';
 
 export const useLegendStore = defineStore('legend', {
     state: () => ({
@@ -72,6 +73,17 @@ export const useLegendStore = defineStore('legend', {
             if (item) {
                 this.cards = this.cards.filter(card => card.id !== id);
             }  
+        },
+        addNewCard() {
+            const newId = Nanoid();
+            this.cards.push({
+                name: '',
+                slug: '',
+                subname: '',
+                type: 'letter',
+                text: '',
+                id: newId
+            });
         }
     }
 })

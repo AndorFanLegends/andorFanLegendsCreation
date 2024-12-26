@@ -19,6 +19,11 @@
                 id: 4
             });
 
+    function handleNewCard() {
+        //this.$store.commit("addCard");
+        legend.addNewCard()
+    }
+
     function handleEdit(id) {
         legend.activeCard(id);
         parentCardData.value = legend.cards.find(
@@ -150,7 +155,7 @@
                                 <v-row>
                                 <!--<v-navigation-drawer permanent height="100vh" position="left" >-->
                                 <v-col cols="4" md="4">
-                                    <v-btn  prepend-icon="mdi-plus" outline right>Nouvelle carte</v-btn><br>
+                                    <v-btn @click="handleNewCard()" prepend-icon="mdi-plus" outline right>Nouvelle carte</v-btn><br>
                                     
                                     <v-table id="cardList" >
                                         <thead>
