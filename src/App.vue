@@ -30,9 +30,9 @@
         if (window.confirm("Voulez-vous vraiment supprimer cette carte ?")) {
             legend.deleteCard(id);
             legend.activeCard(1)
-            parentCardData.value = legend.cards.find(
+            parentCardData.value = legend.cards[0];/*.find(
                 i => i.id === legend.newCardOpenIndex
-            );
+            );*/
         }
     }
 
