@@ -12,8 +12,8 @@ export const useLegendStore = defineStore('legend', {
         officialBonus: true,
         board: [],
         boxExt: [],
-        additionaldownload: "http://www.blibli.com",
-        download: "http://www.blabla.com",//null
+        additionaldownload: null,
+        download: null,
         type: 'single',
         series: null,
         number: null,
@@ -51,20 +51,27 @@ export const useLegendStore = defineStore('legend', {
           }
         ]
     }),
-  getters: {
-    getLegend(state) {
-      return state
+    getters: {
+        getLegend(state) {
+        return state
 
+        },
+        /*getCard(id, state) {
+        console.log(state.cards)
+        console.log(id);
+
+        }*/
     },
-    /*getCard(id, state) {
-      console.log(state.cards)
-      console.log(id);
-
-    }*/
-  },
-  actions: {
-    activeCard(id) {
-      this.newCardOpenIndex = id
+    actions: {
+        activeCard(id) {
+            this.newCardOpenIndex = id
+        },
+        deleteCard(id) {
+            const item = this.cards.find(
+                i => i.id === id);
+            if (item) {
+                this.cards = this.cards.filter(card => card.id !== id);
+            }  
+        }
     }
-  }
 })

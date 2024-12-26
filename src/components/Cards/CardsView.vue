@@ -1,46 +1,16 @@
 <script setup>
 /* eslint-disable */ 
-    import {computed, reactive, defineProps} from 'vue'
+    import {computed, reactive, toRefs} from 'vue'
     import CardPreview from "andor-legendcard";
+    import {useLegendStore} from "./../../stores/legend";
     
-    /*const props = defineProps({
-        legend: {
-            type: Object,
-            default: () => ({})
-        }
-    });*/
-    //const legend = reactive(props.legend);
-
-    let cardData = computed(
-        {
-            type: '',
-            name: '',
-            slug: '',
-            text: '',
-            id: null
-        }
-    )
-
-    //const cardData = reactive(
-        
-    //)
-    cardData = {
-            //console.log(legend.cards)
-            //console.log(legend)
-
-            /*return legend.value.cards.find(
-                i => i.id === legend.value.newCardOpenIndex
-            );*/
-            //return {
-                type: 'put',
-                name: 'Der Handel',
-                slug: 'der-handel',
-                text: '*Wie so oft begab es sich, dass Garzwog den Helden einen Handel anbot.*\nJedem Helden ist es nun einmalig möglich **2 Stärkepunkte** im tausch gegen **6 Gold** zu erhalten.\n',
-                id: 4
-            //}
-        }
+    // Déclarer les props const 
+    const props = defineProps({ cardData: { type: Object, required: true, }, }); 
+    // Utiliser toRefs pour rendre les props réactives 
+    const { cardData } = toRefs(props);
 
 </script>
+
 <template>
     <v-container>
         <v-text-field label="Nom de la Carte" v-model="cardData.name"></v-text-field>
