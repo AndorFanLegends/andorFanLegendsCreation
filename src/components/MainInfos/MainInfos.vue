@@ -23,6 +23,7 @@ const legend = ref(props.legend);
             <v-text-field
                 v-if="(legend.type === 'series')"
                 label="Nom de la Saga"
+                v-model="legend.series"
                 variant="underlined"
                 required
                 hide-details
@@ -31,7 +32,8 @@ const legend = ref(props.legend);
         <v-col cols="2" v-if="(legend.type === 'series')">
             <v-text-field
                 v-if="(legend.type === 'series')"
-                label="Numéro épisode'"
+                label="Numéro épisode"
+                v-model="legend.number"
                 variant="underlined"
                 required
                 hide-details

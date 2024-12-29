@@ -55,8 +55,8 @@ export const useLegendStore = defineStore('legend', {
     getters: {
         getLegend(state) {
             //return state
-            console.log([...state.cards].sort(sorter));
-            console.log([...state.cards].sort(sorter).sort(sorterInstruction));
+            //console.log([...state.cards].sort(sorter));
+            //console.log([...state.cards].sort(sorter).sort(sorterInstruction));
             state.cards = [...state.cards].sort(sorter).sort(sorterInstruction);
             return state
         },
