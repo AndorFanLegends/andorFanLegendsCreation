@@ -21,7 +21,11 @@
 
     function handleNewCard() {
         //this.$store.commit("addCard");
-        legend.addNewCard()
+        const newId = legend.addNewCard();
+        //console.log(newId)
+        parentCardData.value = legend.cards.find(
+            i => i.id === newId
+        );
     }
 
     function handleEdit(id) {
@@ -210,5 +214,14 @@
 }
 .v-list-item-title {
     text-align:left;
+}
+
+.number{
+    top:260px !important; 
+}
+
+.cardAction{
+    width:33% !important;
+    padding:0px !important;
 }
 </style>

@@ -10,7 +10,7 @@ export const useLegendStore = defineStore('legend', {
         year:"2013",
         players: "2-4",
         difficulty: [],
-        officialBonus: true,
+        officialBonus: null,
         board: [],
         boxExt: [],
         additionaldownload: null,
@@ -54,8 +54,11 @@ export const useLegendStore = defineStore('legend', {
     }),
     getters: {
         getLegend(state) {
-        return state
-
+            //return state
+            console.log([...state.cards].sort(sorter));
+            console.log([...state.cards].sort(sorter).sort(sorterInstruction));
+            state.cards = [...state.cards].sort(sorter).sort(sorterInstruction);
+            return state
         },
         /*getCard(id, state) {
         console.log(state.cards)
@@ -84,6 +87,46 @@ export const useLegendStore = defineStore('legend', {
                 text: '',
                 id: newId
             });
+            return newId;
         }
     }
 })
+
+const sorter = (card1, card2) => {
+
+    //console.log(card1.name + ' - ' + card2.name);
+    // treat end as letter
+    let newCard1 = { ...card1 };
+    let newCard2 = { ...card2 };
+  
+    if (newCard1.type === 'end') {
+      newCard1.type = 'letter';
+    }
+  
+    if (newCard2.type === 'end') {
+      newCard2.type = 'letter';
+    }
+  
+    if (newCard2.type !== newCard1.type) {
+      return (newCard2.type === 'letter') ? 1 : -1;
+    }
+    // Sort by name
+    return newCard1.name.localeCompare(newCard2.name);
+  };
+  
+  const sorterInstruction = (card1, card2) => {
+    let newCard1 = { ...card1 };
+    let newCard2 = { ...card2 };
+  
+    if (newCard1.type === 'end') {
+      newCard1.type = 'letter';
+    }
+  
+    if (newCard2.type === 'end') {
+      newCard2.type = 'letter';
+    }
+  
+    if (newCard2.type !== newCard1.type) {
+      return (newCard2.type === 'instruction') ? 1 : -1;
+    }
+  }
