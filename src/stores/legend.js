@@ -10,7 +10,7 @@ export const useLegendStore = defineStore('legend', {
         year:"2013",
         players: "2-4",
         difficulty: [],
-        officialBonus: null,
+        officialBonus: false,
         board: [],
         boxExt: [],
         additionaldownload: null,
@@ -67,6 +67,12 @@ export const useLegendStore = defineStore('legend', {
         }*/
     },
     actions: {
+        blankLegend() {
+            //console.log("blankLegend");
+            //console.log(blankLegend);
+            //this.legend = blankLegend;
+            Object.assign(this, blankLegend);
+        },
         activeCard(id) {
             this.newCardOpenIndex = id
         },
@@ -114,7 +120,7 @@ const sorter = (card1, card2) => {
     return newCard1.name.localeCompare(newCard2.name);
   };
   
-  const sorterInstruction = (card1, card2) => {
+const sorterInstruction = (card1, card2) => {
     let newCard1 = { ...card1 };
     let newCard2 = { ...card2 };
   
@@ -129,4 +135,25 @@ const sorter = (card1, card2) => {
     if (newCard2.type !== newCard1.type) {
       return (newCard2.type === 'instruction') ? 1 : -1;
     }
-  }
+}
+
+const blankLegend = {
+    name: '',
+    slug: null,
+    author: "",
+    abstract: "",
+    year:"",
+    players: "",
+    difficulty: [],
+    officialBonus: false,
+    board: [],
+    boxExt: [],
+    additionaldownload: null,
+    download: null,
+    type: 'single',
+    series: null,
+    number: null,
+    newCardOpenIndex: 1,
+    showPdf: false,
+    cards: []
+}

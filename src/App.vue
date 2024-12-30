@@ -59,6 +59,7 @@
                 if (!validateJson(newState)) {
                     return window.alert("Erreur lors du chargement du fichier : Not valid Json");
                 }
+                legend.blankLegend(); //reset all fields (need for not complete json (missed OfficialLegend or other) )
                 legend.$state = newState
             };
             // Start reading file
