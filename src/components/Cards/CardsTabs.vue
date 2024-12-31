@@ -4,12 +4,10 @@
 
     const props = defineProps({
     legend: {
-        //type: Object,
         default: () => ({})
     }
     });
     const legend = ref(props.legend);
-    //console.log(legend)
 
     let cardData = reactive()
 
@@ -65,12 +63,6 @@
                 </v-table>
             </v-navigation-drawer>
             <v-main>
-                TOTOTO<br/>
-                TOTOTO<br/>
-                TOTOTO<br/>
-                TOTOTO<br/>
-                TOTOTO<br/>
-
                 <!--<CardsView/>-->
             </v-main>
         </v-layout>

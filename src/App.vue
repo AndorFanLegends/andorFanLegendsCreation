@@ -12,11 +12,11 @@
     const legend = useLegendStore().getLegend
 
     const parentCardData = ref({
-                type: 'put',
-                name: 'Der Handel',
-                slug: 'der-handel',
-                text: '*Wie so oft begab es sich, dass Garzwog den Helden einen Handel anbot.*\nJedem Helden ist es nun einmalig möglich **2 Stärkepunkte** im tausch gegen **6 Gold** zu erhalten.\n',
-                id: 4
+                type: null,
+                name: null,
+                slug: null,
+                text: null,
+                id: null
             });
 
     function handleNewCard() {
@@ -47,6 +47,10 @@
 
     function newBlankLegend() {
         legend.blankLegend();
+    }
+
+    function newSampleLegend() {
+        legend.sampleLegend();
     }
 
     const fileInput = ref(null);
@@ -113,17 +117,18 @@
                     @click="newBlankLegend">
                     <v-list-item-title>New</v-list-item-title>
                 </v-list-item>
-                <v-list-item prepend-icon="mdi-invoice-text-plus-outline">
+                <v-list-item prepend-icon="mdi-invoice-text-plus-outline"
+                    @click="newSampleLegend">
                     <v-list-item-title>New Sample</v-list-item-title>
                 </v-list-item>
                 <v-list-item @click="triggerFileInput"
                     prepend-icon="mdi-file-upload" >
-                    <v-list-item-content> <v-list-item-title>Charger</v-list-item-title> </v-list-item-content>
+                    <v-list-item-title>Charger</v-list-item-title>
+                    <input ref="fileInput" type="file" style="display: none" @change="onFileChange" />
                 </v-list-item>
-                <input ref="fileInput" type="file" style="display: none" @change="onFileChange" />
-                <v-list-item @click="saveFile" prepend-icon="mdi-content-save"
-                    title="Enregistrer"
-                ></v-list-item>
+                <v-list-item @click="saveFile" prepend-icon="mdi-content-save">
+                    <v-list-item-title>Enregistrer</v-list-item-title>
+                </v-list-item>
             </v-list>
         </v-navigation-drawer>  
       
