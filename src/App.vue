@@ -97,7 +97,7 @@
             <v-app-bar-title>Andor Fan Legend Creation</v-app-bar-title>
 
             <template v-slot:append>
-            <v-btn icon="mdi-dots-vertical"></v-btn>
+                <v-btn icon="mdi-dots-vertical"></v-btn>
             </template>
         </v-app-bar>
 
@@ -127,9 +127,9 @@
             <v-container fluid>
                 <v-card>
                     <v-tabs v-model="tab" bg-color="primary">
-                        <v-tab value="details">Détails</v-tab>
-                        <v-tab value="download">Download</v-tab>
-                        <v-tab value="cards">Cartes</v-tab>
+                        <v-tab value="details">{{ $t("tabs.details") }}</v-tab>
+                        <v-tab value="download">{{ $t("tabs.download") }}</v-tab>
+                        <v-tab value="cards">{{ $t("tabs.cards") }}</v-tab>
                     </v-tabs>
 
                     <v-card-text>
@@ -142,7 +142,7 @@
                                 <v-col cols="12">
                                     <v-text-field
                                         v-model="legend.download"
-                                        label="Legend Download URL"
+                                        v-bind:label="$t('legendDownloadUrl')"
                                         variant="underlined"
                                         required hide-details
                                     ></v-text-field>
@@ -150,7 +150,7 @@
                                 <v-col cols="12">
                                     <v-text-field
                                         v-model="legend.additionaldownload"
-                                        label="In-App Additionnal Pdf"
+                                        v-bind:label="$t('legendAdditionnalPdf')"
                                         variant="underlined"
                                         required hide-details
                                     ></v-text-field>
@@ -160,13 +160,13 @@
                                 <v-row>
                                 <!--<v-navigation-drawer permanent height="100vh" position="left" >-->
                                 <v-col cols="4" md="4">
-                                    <v-btn @click="handleNewCard()" prepend-icon="mdi-plus" outline right>Nouvelle carte</v-btn><br>
+                                    <v-btn @click="handleNewCard()" prepend-icon="mdi-plus" outline right>{{ $t('newCard') }}</v-btn><br>
                                     
                                     <v-table id="cardList" >
                                         <thead>
                                             <tr>
-                                                <th class="text-left">Name</th>
-                                                <th class="text-left">Action</th>
+                                                <th class="text-left">{{ $t('list.cardName') }}</th>
+                                                <th class="text-left">{{ $t('list.cardAction') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

@@ -18,7 +18,7 @@ const legend = ref(props.legend);
         <v-col cols="12">
             <v-text-field
                 v-model="legend.author"
-                label="Auteur"
+                v-bind:label="$t('author')"
                 variant="underlined"
                 required
                 hide-details
@@ -27,14 +27,14 @@ const legend = ref(props.legend);
         <v-col cols="12">
             <v-textarea 
                 v-model="legend.abstract"
-                label="Résumé"
+                v-bind:label="$t('abstract')"
                 variant="underlined"
             ></v-textarea>
         </v-col>
         <v-col cols="12">
             <v-text-field
                 v-model="legend.year"
-                label="Année"
+                v-bind:label="$t('year')"
                 variant="underlined"
                 required
                 hide-details
@@ -43,14 +43,14 @@ const legend = ref(props.legend);
         <v-col cols="12">
             <v-text-field
                 v-model="legend.players"
-                label="Nombre de joueurs"
+                v-bind:label="$t('players')"
                 variant="underlined"
                 required
                 hide-details
             ></v-text-field>
         </v-col>
         <v-col cols="12">
-            <label class="v-label d-flex">Difficulté</label>
+            <label class="v-label d-flex">{{ $t("difficulty") }}</label>
             <v-chip-group
                 v-model="legend.difficulty" 
                 selected-class="bg-light-green-darken-4"
@@ -65,7 +65,7 @@ const legend = ref(props.legend);
             </v-chip-group>
         </v-col>
         <v-col cols="12">
-            <label class="v-label d-flex">Plateau</label>
+            <label class="v-label d-flex">{{ $t("board") }}</label>
             <v-chip-group
                 v-model="legend.board"
                 selected-class="bg-light-green-darken-4"
@@ -80,7 +80,7 @@ const legend = ref(props.legend);
             </v-chip-group>
         </v-col>
         <v-col cols="12">
-            <label class="v-label d-flex">Nécessite</label>
+            <label class="v-label d-flex">{{ $t("boxExt") }}</label>
             <v-chip-group
                 v-model="legend.boxExt"
                 selected-class="bg-light-green-darken-4"

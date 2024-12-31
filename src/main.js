@@ -19,7 +19,11 @@ const pinia = createPinia();
 
 import App from './App.vue'
 
+//i18n
+import i18n from "./locales/i18n.js";
+
 createApp(App)
     .use(vuetify)
     .use(pinia)
+    .use(i18n)
     .mount('#app')

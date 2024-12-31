@@ -1,0 +1,39 @@
+{
+    "standaloneLegend": "Unique",
+    "legendTitle": "Titre de Légende",
+    "sagaLegend": "Plusieurs Chapitres",
+    "sagaName": "Nom de la Saga",
+    "sagaNumber": "Numéro épisode",
+    "tabs": {
+        "details": "Details",
+        "download": "Downloads",
+        "cards": "Cartes"
+    },
+    "author": "Auteur",
+    "abstract": "Résumé",
+    "year": "Année",
+    "players": "Nombre de joueurs",
+    "difficulty": "Difficulté",
+    "board": "Plateau",
+    "boxExt": "Nécessite",
+    "legendDownloadUrl": "Url de téléchargement de la Légende",
+    "legendAdditionnalPdf": "Contenu PDF additionnel",
+    "newCard": "Nouvelle Carte",
+    "list": {
+        "cardName": "Nom",
+        "cardAction": "Action"
+    },
+    "cardName": "Nom de la Carte",
+    "cardType": "Type de Carte",
+    "type": {
+        "letter": "Lettre",
+        "end": "Fin du jeu (N, en général)",
+        "track": "Cartes de la Piste",
+        "instruction": "Instructions",
+        "custom": "Autres"
+    },
+    "cardSubTitle": "Sous-Titre",
+    "cardText": "Texte de Carte",
+    "cardSuccessText": "Texte de Succès",
+    "cardFailText": "Texte d'Echec"
+}
