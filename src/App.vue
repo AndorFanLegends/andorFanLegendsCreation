@@ -45,6 +45,10 @@
         }
     }
 
+    function newBlankLegend() {
+        legend.blankLegend();
+    }
+
     const fileInput = ref(null);
     function triggerFileInput() {
         fileInput.value.click(); 
@@ -106,11 +110,12 @@
             expand-on-hover rail permanent >
             <v-list>
                 <v-list-item prepend-icon="mdi-invoice-plus-outline"
-                    title="New"
-                ></v-list-item>
-                <v-list-item prepend-icon="mdi-invoice-text-plus-outline"
-                    title="New Sample"
-                ></v-list-item>
+                    @click="newBlankLegend">
+                    <v-list-item-title>New</v-list-item-title>
+                </v-list-item>
+                <v-list-item prepend-icon="mdi-invoice-text-plus-outline">
+                    <v-list-item-title>New Sample</v-list-item-title>
+                </v-list-item>
                 <v-list-item @click="triggerFileInput"
                     prepend-icon="mdi-file-upload" >
                     <v-list-item-content> <v-list-item-title>Charger</v-list-item-title> </v-list-item-content>
