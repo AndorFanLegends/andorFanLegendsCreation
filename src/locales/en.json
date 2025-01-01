@@ -1,12 +1,74 @@
 {
-    "file": "storage/legends-fr.json",
+    "blankNew": "New Legend",
+    "sampleLegend": "Sample Legend",
+    "loadLegend": "Load",
+    "saveLegend":  "Save",
+    "standaloneLegend": "Single",
+    "legendTitle": "Legend title",
+    "sagaLegend": "Multiple Chapters",
+    "sagaName": "Saga Name",
+    "sagaNumber": "Episode Number",
+    "tabs": {
+        "details": "Details",
+        "download": "Downloads",
+        "cards": "Cards"
+    },
+    "officialLegend": "Official Bonus Legend",
+    "author": "Author",
+    "abstract": "Abstract",
+    "year": "Year",
+    "players": "Number of players",
+    "difficulty": "Difficulty",
+    "board": "Board",
+    "boxExt": "Required",
+    "legendDownloadUrl": "Legend download url",
+    "legendAdditionnalPdf": "Additional PDF content",
+    "newCard": "New Card",
     "list": {
-        "selection": "Sélectionnez une légende",
-        "filter": "Filtrer",
-        "allPlayedAsk": "Avez-vous déjà joué à toutes les légendes ?",
-        "contribution": "Aidez-nous à fournir encore plus de légendes de fans dans cette application !",
-        "startLegend": "Commencer",
-        "downloadLegend": "Télécharger",
-        "createdBy": "Créée par"
-    }
+        "cardName": "Name",
+        "cardAction": "Action"
+    },
+    "settings": {
+        "availableLanguages": "Available languages",
+        "apply": "Apply",
+        "cancel": "Cancel"
+    },
+    "cardName": "Name of the Card",
+    "cardType": "Type of Card",
+    "type": {
+        "letter": "Letter",
+        "end": "End of game (usually N)",
+        "track": "Track Card",
+        "instruction": "Instructions",
+        "custom": "Others"
+    },
+    "cardSubTitle": "Subtitle",
+    "cardText": "Card Text",
+    "cardSuccessText": "Success Text",
+    "cardFailText": "Fail Text",
+    
+    "Facile": "Easy",
+    "Moyenne": "Medium",
+    "Difficile": "Hard",
+
+    "Andor": "Andor",
+    "Cavern": "Cavern",
+    "Mer du Nord": "North",
+    "Hadria": "Hadria",
+    "Montagnes grises": "Gray Mountains",
+    "Krahd": "Krahd",
+    "Andor enneigé": "Snowy Andor",
+    "Pays des trois frères": "Land of three brothers",
+
+    "Andor (base)": "Andor (Base Game)",
+    "Voyage vers le Nord": "Journey to the North",
+    "Le Dernier Espoir": "The Last Hope",
+    "Froid Eternel": "Eternal Frost",
+    "Boite Bonus": "Bonus Box",
+    "Lég. oubliées : Heures sombres" : "Dark Ages",
+    "Lég. oubliées : Esprits Ancestraux": "Old Spirits",
+    "Lég. de Gardétoile": "The Star Shield",
+    "Nouveaux Héros": "New Heroes",
+    "Héros Sombres": "Dark Heroes",
+    "Héros Magiques": "Magical Heroes"
 }

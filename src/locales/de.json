@@ -1,12 +1,74 @@
 {
-    "file": "storage/legends-fr.json",
+    "blankNew": "Neue Legende",
+    "sampleLegend": "Beispiel Legende",
+    "loadLegend": "Laden",
+    "saveLegend":  "Speichern",
+    "standaloneLegend": "Einzeln",
+    "legendTitle": "Legende Titel",
+    "sagaLegend": "Mehrere Kapitel",
+    "sagaName": "Name der Saga",
+    "sagaNumber": "Episodennummer",
+    "tabs": {
+        "details": "Einzelheiten",
+        "download": "Herunterladen",
+        "cards": "Karten"
+    },
+    "officialLegend": "Offizielle Bonus-Legende",
+    "author": "Verfasser",
+    "abstract": "Abstrakt",
+    "year": "Jahr",
+    "players": "Zahl der Spieler",
+    "difficulty": "Schwierigkeit",
+    "board": "Spielfeld",
+    "boxExt": "Erforderlich",
+    "legendDownloadUrl": "Legende download url",
+    "legendAdditionnalPdf": "Zusätzliche PDF-Inhalte",
+    "newCard": "Neue Karte",
     "list": {
-        "selection": "Sélectionnez une légende",
-        "filter": "Filtrer",
-        "allPlayedAsk": "Avez-vous déjà joué à toutes les légendes ?",
-        "contribution": "Aidez-nous à fournir encore plus de légendes de fans dans cette application !",
-        "startLegend": "Commencer",
-        "downloadLegend": "Télécharger",
-        "createdBy": "Créée par"
-    }
+        "cardName": "Name",
+        "cardAction": "Aktion"
+    },
+    "settings": {
+        "availableLanguages": "Verfügbare Sprachen",
+        "apply": "Bewerbung",
+        "cancel": "Cancel"
+    },
+    "cardName": "Name der Karte",
+    "cardType": "Typ der Karte",
+    "type": {
+        "letter": "Brief",
+        "end": "Ende des Spiels (normalerweise N)",
+        "track": "Karte verfolgen",
+        "instruction": "Anweisungen",
+        "custom": "Andere"
+    },
+    "cardSubTitle": "Untertitel",
+    "cardText": "Text der Karte",
+    "cardSuccessText": "Erfolg Text",
+    "cardFailText": "Fail Text",
+    
+    "Facile": "Leicht",
+    "Moyenne": "Mittel",
+    "Difficile": "Schwer",
+
+    "Andor": "Andor",
+    "Cavern": "Cavern",
+    "Mer du Nord": "Norden",
+    "Hadria": "Hadria",
+    "Montagnes grises": "Graues Gebirge",
+    "Krahd": "Krahd",
+    "Andor enneigé": "Verschneite Andor",
+    "Pays des trois frères": "Land der drei Brüder",
+
+    "Andor (base)": "Andor (Grundspiel)",
+    "Voyage vers le Nord": "Die Reise in den Norden",
+    "Le Dernier Espoir": "Die letzte Hoffnung",
+    "Froid Eternel": "Die ewige Kälte",
+    "Boite Bonus": "Die Bonus-Box",
+    "Lég. oubliées : Heures sombres" : "Düstere Zeiten",
+    "Lég. oubliées : Esprits Ancestraux": "Alte Geister",
+    "Lég. de Gardétoile": "Der Sternenschild",
+    "Nouveaux Héros": "Neue Helden",
+    "Héros Sombres": "Dunkle Helden",
+    "Héros Magiques": "Magische Helden"
 }

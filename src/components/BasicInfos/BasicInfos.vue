@@ -14,7 +14,9 @@ const legend = ref(props.legend);
 
 <template>
     <v-row>
-        <v-checkbox v-model="legend.officialBonus" hide-details cols="12" label="Légende Bonus Officielle"></v-checkbox>
+        <v-checkbox 
+            v-bind:label="$t('officialLegend')"
+            v-model="legend.officialBonus" hide-details cols="12"></v-checkbox>
         <v-col cols="12">
             <v-text-field
                 v-model="legend.author"
@@ -75,7 +77,7 @@ const legend = ref(props.legend);
                     v-for="board in options.boardOptions" 
                         :key="board.key"
                         :value="board.key">
-                    {{ board.name }}
+                    {{ $t(board.name) }}
                 </v-chip>
             </v-chip-group>
         </v-col>
@@ -90,7 +92,7 @@ const legend = ref(props.legend);
                     v-for="boxExt in options.boxExtOptions" 
                         :key="boxExt.key"
                         :value="boxExt.key">
-                    {{ boxExt.name }}
+                    {{ $t(boxExt.name) }}
                 </v-chip>
             </v-chip-group>
         </v-col>
