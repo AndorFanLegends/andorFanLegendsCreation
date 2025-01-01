@@ -1,4 +1,8 @@
 {
+    "blankNew": "Nouvelle Légende",
+    "sampleLegend": "Légende Exemple",
+    "loadLegend": "Charger",
+    "saveLegend":  "Enregistrer",
     "standaloneLegend": "Unique",
     "legendTitle": "Titre de Légende",
     "sagaLegend": "Plusieurs Chapitres",
@@ -23,6 +27,11 @@
         "cardName": "Nom",
         "cardAction": "Action"
     },
+    "settings": {
+        "availableLanguages": "Langues disponibles",
+        "apply": "Appliquer",
+        "cancel": "Annuler"
+    },
     "cardName": "Nom de la Carte",
     "cardType": "Type de Carte",
     "type": {
@@ -35,5 +44,18 @@
     "cardSubTitle": "Sous-Titre",
     "cardText": "Texte de Carte",
     "cardSuccessText": "Texte de Succès",
-    "cardFailText": "Texte d'Echec"
+    "cardFailText": "Texte d'Echec",
+    
+    "Facile": "Facile",
+    "Moyenne": "Moyenne",
+    "Difficile": "Difficile",
+
+    "Andor": "Andor",
+    "Cavern": "Cavern",
+    "Mer du Nord": "Mer du Nord",
+    "Hadria": "Hadria",
+    "Montagnes grises": "Montagnes grises",
+    "Krahd": "Krahd",
+    "Andor enneigé": "Andor enneigé",
+    "Pays des trois frères": "Pays des trois frères"
 }

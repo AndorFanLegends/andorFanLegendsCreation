@@ -60,7 +60,7 @@ const legend = ref(props.legend);
                     v-for="difficulty in options.difficultiesOptions" 
                         :key="difficulty.key"
                         :value="difficulty.key">
-                    {{ difficulty.name }}
+                    {{ $t(difficulty.name) }}
                 </v-chip>
             </v-chip-group>
         </v-col>

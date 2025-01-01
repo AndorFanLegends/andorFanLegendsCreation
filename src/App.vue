@@ -1,15 +1,26 @@
 <script setup>
-    import {ref} from 'vue';
+    import {ref, reactive} from 'vue';
+    import { useI18n } from "vue-i18n";
     import { saveAs } from "file-saver";
     import MainInfos from  "./components/MainInfos/MainInfos";
     import BasicInfos from "./components/BasicInfos/BasicInfos";
     import CardsView from "./components/Cards/CardsView";
+    import SettingsView from "./components/SettingsView/SettingsView";
 
     const drawer = ref(true)
     const tab = ref(null)
 
     import {useLegendStore} from './stores/legend';
     const legend = useLegendStore().getLegend
+
+    import { useSettingsStore } from './stores/settings.js';
+    const t = useI18n();
+    const userSettings = useSettingsStore();
+    let languageSettings = reactive(userSettings.activeLanguage);
+    if (languageSettings != null && languageSettings != t.locale.value) {
+        t.locale.value = languageSettings;
+    }
+    userSettings.activeLanguage = t.locale.value;
 
     const parentCardData = ref({
                 type: null,
@@ -44,6 +55,23 @@
             );*/
         }
     }
+
+    //const modal = ref(null);
+    /*function handleSettings() {
+        console.log(modal.value); // Vérifiez si la référence est définie 
+        modal.value.dialog.value = true;
+    }*/
+
+    const dialog = ref(false);
+    const modal = ref(null);
+    const handleSettings = () => { 
+        if (modal.value) { 
+            dialog.value = true; 
+        } 
+    }; 
+    const updateDialog = (val) => { 
+        dialog.value = val; 
+    };
 
     function newBlankLegend() {
         legend.blankLegend();
@@ -95,6 +123,7 @@
 
 <template>
     <v-layout>
+        
         <v-app-bar
             color="primary"
             density="compact">
@@ -105,7 +134,8 @@
             <v-app-bar-title>Andor Fan Legend Creation</v-app-bar-title>
 
             <template v-slot:append>
-                <v-btn icon="mdi-dots-vertical"></v-btn>
+                <v-btn icon="mdi-cog"  @click="handleSettings"></v-btn>
+                <SettingsView :dialog="dialog" @update:dialog="updateDialog" ref="modal"></SettingsView>
             </template>
         </v-app-bar>
 
@@ -115,19 +145,19 @@
             <v-list>
                 <v-list-item prepend-icon="mdi-invoice-plus-outline"
                     @click="newBlankLegend">
-                    <v-list-item-title>New</v-list-item-title>
+                    <v-list-item-title>{{ $t('blankNew') }}</v-list-item-title>
                 </v-list-item>
                 <v-list-item prepend-icon="mdi-invoice-text-plus-outline"
                     @click="newSampleLegend">
-                    <v-list-item-title>New Sample</v-list-item-title>
+                    <v-list-item-title>{{ $t('sampleLegend') }}</v-list-item-title>
                 </v-list-item>
                 <v-list-item @click="triggerFileInput"
                     prepend-icon="mdi-file-upload" >
-                    <v-list-item-title>Charger</v-list-item-title>
+                    <v-list-item-title>{{ $t('loadLegend') }}</v-list-item-title>
                     <input ref="fileInput" type="file" style="display: none" @change="onFileChange" />
                 </v-list-item>
                 <v-list-item @click="saveFile" prepend-icon="mdi-content-save">
-                    <v-list-item-title>Enregistrer</v-list-item-title>
+                    <v-list-item-title>{{ $t('saveLegend') }}</v-list-item-title>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>  
