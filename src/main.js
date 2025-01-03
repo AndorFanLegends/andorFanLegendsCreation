@@ -19,7 +19,7 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate)
 
-import App from './App.vue'
+import App from './App.vue';
 
 //i18n
 import i18n from "./locales/i18n.js";

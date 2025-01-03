@@ -6,6 +6,7 @@
     import BasicInfos from "./components/BasicInfos/BasicInfos";
     import CardsView from "./components/Cards/CardsView";
     import SettingsView from "./components/SettingsView/SettingsView";
+    import PdfView from "./components/PdfView/PdfView";
 
     const drawer = ref(true)
     const tab = ref(null)
@@ -31,9 +32,7 @@
             });
 
     function handleNewCard() {
-        //this.$store.commit("addCard");
         const newId = legend.addNewCard();
-        //console.log(newId)
         parentCardData.value = legend.cards.find(
             i => i.id === newId
         );
@@ -56,12 +55,7 @@
         }
     }
 
-    //const modal = ref(null);
-    /*function handleSettings() {
-        console.log(modal.value); // Vérifiez si la référence est définie 
-        modal.value.dialog.value = true;
-    }*/
-
+    // Settings
     const dialog = ref(false);
     const modal = ref(null);
     const handleSettings = () => { 
@@ -69,8 +63,18 @@
             dialog.value = true; 
         } 
     }; 
-    const updateDialog = (val) => { 
+    /*const updateDialog = (val) => { 
         dialog.value = val; 
+    };*/
+
+    // Export PDF
+    const dialogPdfPreview = ref(false);
+    const modalPdfPreview = ref(null);
+    const handlePdfPreview = () => {
+        console.log(modalPdfPreview.value);
+        if (modalPdfPreview.value) { 
+            dialogPdfPreview.value = true;
+        }
     };
 
     function newBlankLegend() {
@@ -135,7 +139,7 @@
 
             <template v-slot:append>
                 <v-btn icon="mdi-cog"  @click="handleSettings"></v-btn>
-                <SettingsView :dialog="dialog" @update:dialog="updateDialog" ref="modal"></SettingsView>
+                <SettingsView :dialog="dialog" ref="modal"></SettingsView><!--@update:dialog="updateDialog"-->
             </template>
         </v-app-bar>
 
@@ -158,6 +162,10 @@
                 </v-list-item>
                 <v-list-item @click="saveFile" prepend-icon="mdi-content-save">
                     <v-list-item-title>{{ $t('saveLegend') }}</v-list-item-title>
+                </v-list-item>
+                <v-list-item :disabled="legend.cards.length == 0" @click="handlePdfPreview" prepend-icon="mdi-file-pdf-box">
+                    <v-list-item-title>{{ $t('exportPdfFile') }}</v-list-item-title>
+                    <PdfView :dialog="dialogPdfPreview" ref="modalPdfPreview"></PdfView>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>  
@@ -257,12 +265,12 @@
     text-align:left;
 }
 
-.number{
-    top:260px !important; 
-}
-
 .cardAction{
     width:33% !important;
     padding:0px !important;
+}
+
+.right{
+    height: calc(100%) !important;
 }
 </style>
