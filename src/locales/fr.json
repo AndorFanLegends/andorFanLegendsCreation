@@ -3,6 +3,7 @@
     "sampleLegend": "Légende Exemple",
     "loadLegend": "Charger",
     "saveLegend":  "Enregistrer",
+    "exportPdfFile": "Export vers Pdf",
     "standaloneLegend": "Unique",
     "legendTitle": "Titre de Légende",
     "sagaLegend": "Plusieurs Chapitres",
@@ -58,5 +59,17 @@
     "Montagnes grises": "Montagnes grises",
     "Krahd": "Krahd",
     "Andor enneigé": "Andor enneigé",
-    "Pays des trois frères": "Pays des trois frères"
+    "Pays des trois frères": "Pays des trois frères",
+
+    "Andor (base)": "Andor (base)",
+    "Voyage vers le Nord": "Voyage vers le Nord",
+    "Le Dernier Espoir": "Le Dernier Espoir",
+    "Froid Eternel": "Froid Eternel",
+    "Boite Bonus": "Boite Bonus",
+    "Lég. oubliées : Heures sombres" : "Lég. oubliées : Heures sombres",
+    "Lég. oubliées : Esprits Ancestraux": "Lég. oubliées : Esprits Ancestraux",
+    "Lég. de Gardétoile": "Lég. de Gardétoile",
+    "Nouveaux Héros": "Nouveaux Héros",
+    "Héros Sombres": "Héros Sombres",
+    "Héros Magiques": "Héros Magiques"
 }

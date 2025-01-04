@@ -3,6 +3,7 @@
     "sampleLegend": "Sample Legend",
     "loadLegend": "Load",
     "saveLegend":  "Save",
+    "exportPdfFile": "Export to Pdf",
     "standaloneLegend": "Single",
     "legendTitle": "Legend title",
     "sagaLegend": "Multiple Chapters",
