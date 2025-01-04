@@ -1,6 +1,8 @@
 <script setup>
     import { ref, watch, defineProps, defineEmits, computed } from 'vue';
-    import CardPreview from "andor-legendcard";
+    import CardPreview from "andor-legendcard/index.vue";
+    import CardPreviewRecto from "andor-legendcard/cardPreviewRecto.vue";
+    import CardPreviewVerso from "andor-legendcard/cardPreviewVerso.vue";
     import {useLegendStore} from "./../../stores/legend";
     import html2pdf from 'html2pdf.js';
 
@@ -10,6 +12,7 @@
     watch(() => props.dialog, (newVal) => { dialog.value = newVal; });
 
     const printFormat = ref('bothSide');
+    const printMode = ref('color');
 
     const legend = useLegendStore().getLegend;
 
@@ -21,9 +24,9 @@
     const exportToPDF = () => {
         let content = null;
         if (printFormat.value === 'bothSide') {
-            content = document.getElementById('pdfContent');
+            content = document.getElementById('pdfContentBothSide');
         } else {
-            content = document.getElementById('pdfContent2');
+            content = document.getElementById('pdfContentSingleSide');
         }
         const options = {
             margin: [10,10,10,10],
@@ -66,8 +69,8 @@ const completeChunks = (chunks, chunkSize) => {
         }
         return chunk;
     });
-    console.log("COMPLETE CHUNK");
-    console.log(completeChunks)
+//    console.log("COMPLETE CHUNK");
+//    console.log(completeChunks)
     return completeChunks;
 };
 // Calculer les groupes de 4 éléments pour chaque page
@@ -78,8 +81,8 @@ const reorganizeItems = (page) => {
     if (page.length === 4) {
         return [page[1], page[0], page[3], page[2]];
     }
-    console.log("REORGANISATION")
-    console.log(page)
+//    console.log("REORGANISATION")
+//    console.log(page)
     return page;
 };
     
@@ -88,42 +91,43 @@ const reorganizeItems = (page) => {
 <template>
     <v-dialog v-model="dialog" fullscreen hide-overlay persistent>
         <v-card>
-            <v-toolbar flat>
+            <v-toolbar density="compact" :elevation="8">
                 <v-toolbar-title>PDF Preview</v-toolbar-title>
-                <v-spacer></v-spacer>
-                <div class="radio-buttons">
-                    <label><input type="radio" value="bothSide" v-model="printFormat" /> Afficher Div 1 </label>
-                    <label><input type="radio" value="singleSide" v-model="printFormat" /> Afficher Div 2 </label>
-                </div>
-                <v-spacer></v-spacer>
-                <button @click="exportToPDF">Export to PDF</button>
-                <v-spacer></v-spacer>
+                <v-radio-group v-model="printFormat" inline class="d-flex align-center">
+                    <v-radio :label="$t('foldingCard')" value="bothSide" ></v-radio>
+                    <v-radio :label="$t('duplexPrinting')" value="singleSide" ></v-radio>
+                </v-radio-group>
+                <v-radio-group v-model="printMode" inline class="d-flex align-center">
+                    <v-radio :label="$t('classicColor')" value="color" ></v-radio>
+                    <v-radio :label="$t('blackWhite')" value="blackWhite" disabled="disabled"></v-radio>
+                </v-radio-group>
+                <!--<div class="radio-buttons">
+                    <label><input type="radio" value="bothSide" v-model="printFormat" /> {{ $t('foldingCard') }}</label>
+                    <label><input type="radio" value="singleSide" v-model="printFormat" /> {{ $t('duplexPrinting') }}</label>
+                </div>-->
+                <v-btn variant="tonal" @click="exportToPDF">Export to PDF</v-btn>
                 <v-btn icon @click="closeDialog"> <v-icon>mdi-close</v-icon> </v-btn>
             </v-toolbar>
             <v-card-text>
-                <v-container v-if="printFormat === 'bothSide'" id="pdfContent">
+                <v-container v-if="printFormat === 'bothSide'" id="pdfContentBothSide">
                     <div v-for="(card, index) in legend.cards" :key="card.id" class="cards2print"> <!-- -->
                         <CardPreview :card-data="card" :name="legend.name" :type="card.type" :class="{pageBreak: (index % 2 === 0)}"  style="margin: 0 auto;" />
                         <v-spacer></v-spacer>
                     </div>
                 </v-container>
-                <v-container v-if="printFormat === 'singleSide'" id="pdfContent2">
+                <v-container v-if="printFormat === 'singleSide'" id="pdfContentSingleSide">
                     <div v-for="(page, pageIndex) in paginatedItems" :key="pageIndex" class="page">
                         <!-- Affichage des rectos -->
-                        <div  class="recto">
-                            <div class="item" v-for="(item, itemIndex) in page" :key="itemIndex">
-                                <p>Recto: {{ item.name }}</p>
-                            </div>
+                        <div class="item" v-for="(card, itemIndex) in page" :key="itemIndex">
+                            <CardPreviewRecto :card-data="card" :name="legend.name" :type="card.type" :class="{pageBreak: (index % 2 === 0)}"  style="margin: 0 auto;" />
                         </div>
+                        <v-spacer class="pageBreak"></v-spacer>
                         <!-- Affichage des versos -->
-                         <div class="verso">
-                            <div class="item" v-for="(item, itemIndex) in reorganizeItems(page)" :key="itemIndex">
-                                <p>Verso: {{ item.name }}</p>
-                            </div>
+                        <div class="item" v-for="(card, itemIndex) in reorganizeItems(page)" :key="itemIndex">
+                            <CardPreviewVerso :card-data="card" :name="legend.name" :type="card.type" :class="{pageBreak: (index % 2 === 0)}"  style="margin: 0 auto;" />
                         </div>
                         <hr>
                     </div>
-                    
                 </v-container>
             </v-card-text>
         </v-card>
@@ -145,4 +149,30 @@ const reorganizeItems = (page) => {
         width:162mm !important;
         height:120mm !important;
     }
+    /*.item {
+        width:162mm !important;
+        height:120mm !important;
+    }*/
+    #pdfContentSingleSide .card {
+        float: left;
+        width:307px !important;
+        margin-right: 90px !important;
+        margin-bottom:50px !important;
+    }
+
+    
+
+/*
+.card :deep(ul) {
+  padding-left: 1.1rem;
+  margin: 0;
+}
+
+.card :deep(ol) {
+  padding-left: 1rem;
+}
+
+.card :deep(li) {
+  padding: 2px 0;
+}*/
 </style>
