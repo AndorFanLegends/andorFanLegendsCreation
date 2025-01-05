@@ -5,9 +5,15 @@
     import {useLegendStore} from "./../../stores/legend";
     
     // Déclarer les props const 
-    const props = defineProps({ cardData: { type: Object, required: true, }, }); 
+    const props = defineProps({ cardData: { type: Object, required: true, }, legend: { type: Object, required: true, } }); 
     // Utiliser toRefs pour rendre les props réactives 
     const { cardData } = toRefs(props);
+
+    /*const legend = useLegendStore().getLegend
+    const isCardsEmpty = computed(() => {
+        useLegendStore().getActiveCard;
+        legend.cards.length === 0
+    });*/
 
 </script>
 
@@ -17,7 +23,7 @@
             v-bind:label="$t('cardName')"
             v-model="cardData.name"></v-text-field>
         <label class="v-label d-flex">{{ $t('cardType') }}</label>
-        <v-radio-group inline v-model="cardData.type">
+        <v-radio-group inline v-model="cardData.type" >
             <v-radio
                 v-bind:label="$t('type.letter')"
                 value="letter"></v-radio>
@@ -61,7 +67,7 @@
         </div>
     </v-container>
     <v-container>
-        <CardPreview :card-data="cardData" :name="name" :type="cardData.type"  style="margin: 0 auto;" />
+        <CardPreview :card-data="cardData" :name="legend.name" :type="cardData.type"  style="margin: 0 auto;" />
         <!-- :name="name" :type="type" :series="series" :number="number"-->
     </v-container>
 </template>

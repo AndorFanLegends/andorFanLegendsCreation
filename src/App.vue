@@ -8,20 +8,26 @@
     import SettingsView from "./components/SettingsView/SettingsView";
     import PdfView from "./components/PdfView/PdfView";
 
+    // Interfaces
     const drawer = ref(true)
     const tab = ref(null)
 
+    // Utilisation des stores
     import {useLegendStore} from './stores/legend';
-    const legend = useLegendStore().getLegend
-
     import { useSettingsStore } from './stores/settings.js';
+    const legendStore = useLegendStore()
+    const settingsStore = useSettingsStore();
     const t = useI18n();
-    const userSettings = useSettingsStore();
-    let languageSettings = reactive(userSettings.activeLanguage);
+    
+    // Gestion de la langue
+    let languageSettings = reactive(settingsStore.activeLanguage);
     if (languageSettings != null && languageSettings != t.locale.value) {
         t.locale.value = languageSettings;
     }
-    userSettings.activeLanguage = t.locale.value;
+    settingsStore.activeLanguage = t.locale.value;
+
+    // Utilisation d'une référence réactive pour legend
+    const legend = (legendStore.getLegend);
 
     const parentCardData = ref({
                 type: null,
@@ -31,31 +37,33 @@
                 id: null
             });
 
+    // Fonctions de Gestion des cartes
     function handleNewCard() {
-        const newId = legend.addNewCard();
-        parentCardData.value = legend.cards.find(
+        const newId = legendStore.addNewCard();
+        parentCardData.value = legendStore.cards.find(
             i => i.id === newId
         );
     }
 
     function handleEdit(id) {
-        legend.activeCard(id);
-        parentCardData.value = legend.cards.find(
-            i => i.id === legend.newCardOpenIndex
+        legendStore.activeCard(id);
+        parentCardData.value = legendStore.cards.find(
+            i => i.id === legendStore.newCardOpenIndex
         );
     }
 
     function handleDelete(id) {
         if (window.confirm("Voulez-vous vraiment supprimer cette carte ?")) {
-            legend.deleteCard(id);
-            legend.activeCard(1)
-            parentCardData.value = legend.cards[0];/*.find(
+            legendStore.deleteCard(id);
+// TODO : find good new active card
+            legendStore.activeCard(1);
+            parentCardData.value = legendStore.cards[0];/*.find(
                 i => i.id === legend.newCardOpenIndex
             );*/
         }
     }
 
-    // Settings
+    // Modal Settings
     const dialog = ref(false);
     const modal = ref(null);
     const handleSettings = () => { 
@@ -63,11 +71,11 @@
             dialog.value = true; 
         } 
     }; 
-    /*const updateDialog = (val) => { 
+    const updateSettingDialog = (val) => { 
         dialog.value = val; 
-    };*/
+    };
 
-    // Export PDF
+    // Modal Export PDF
     const dialogPdfPreview = ref(false);
     const modalPdfPreview = ref(null);
     const handlePdfPreview = () => {
@@ -76,13 +84,16 @@
             dialogPdfPreview.value = true;
         }
     };
+    const updatePdfPreviewDialog = (val) => { 
+        dialogPdfPreview.value = val; 
+    };
 
     function newBlankLegend() {
-        legend.blankLegend();
+        legendStore.blankLegend();
     }
 
     function newSampleLegend() {
-        legend.sampleLegend();
+        legendStore.sampleLegend();
     }
 
     const fileInput = ref(null);
@@ -99,8 +110,10 @@
                 if (!validateJson(newState)) {
                     return window.alert("Erreur lors du chargement du fichier : Not valid Json");
                 }
-                legend.blankLegend(); //reset all fields (need for not complete json (missed OfficialLegend or other) )
-                legend.$state = newState
+                legendStore.blankLegend(); //reset all fields (need for not complete json (missed OfficialLegend or other) )
+                legendStore.$state = newState
+                // Forcer l'ordre
+                legendStore.getLegend;
             };
             // Start reading file
             reader.readAsText(file);
@@ -118,10 +131,10 @@
     }
 
     function saveFile() {
-      const blob = new Blob([JSON.stringify(legend.$state)], {
+      const blob = new Blob([JSON.stringify(legendStore.$state)], {
         type: "application/json"
       });
-      saveAs(blob, legend.$state.slug);
+      saveAs(blob, legend.slug);
     }
 </script>
 
@@ -139,7 +152,7 @@
 
             <template v-slot:append>
                 <v-btn icon="mdi-cog"  @click="handleSettings"></v-btn>
-                <SettingsView :dialog="dialog" ref="modal"></SettingsView><!--@update:dialog="updateDialog"-->
+                <SettingsView :dialog="dialog" ref="modal" @update:dialog="updateSettingDialog"></SettingsView><!---->
             </template>
         </v-app-bar>
 
@@ -160,12 +173,12 @@
                     <v-list-item-title>{{ $t('loadLegend') }}</v-list-item-title>
                     <input ref="fileInput" type="file" style="display: none" @change="onFileChange" />
                 </v-list-item>
-                <v-list-item @click="saveFile" prepend-icon="mdi-content-save">
+                <v-list-item :disabled="!legend.name" @click="saveFile" prepend-icon="mdi-content-save">
                     <v-list-item-title>{{ $t('saveLegend') }}</v-list-item-title>
                 </v-list-item>
                 <v-list-item :disabled="legend.cards.length == 0" @click="handlePdfPreview" prepend-icon="mdi-file-pdf-box">
                     <v-list-item-title>{{ $t('exportPdfFile') }}</v-list-item-title>
-                    <PdfView :dialog="dialogPdfPreview" ref="modalPdfPreview"></PdfView>
+                    <PdfView :dialog="dialogPdfPreview" ref="modalPdfPreview" @update:dialogPdfPreview="updatePdfPreviewDialog"></PdfView>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>  
@@ -237,7 +250,7 @@
                                     </v-table>
                                 </v-col>
                                 <v-col cols="8" md="8">
-                                        <CardsView :cardData="parentCardData"/>
+                                    <CardsView :cardData="parentCardData" :legend="legend"/>
                                 </v-col>
                                 </v-row>
                                 <!--<v-card-text>

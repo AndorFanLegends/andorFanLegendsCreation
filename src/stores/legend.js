@@ -59,6 +59,17 @@ export const useLegendStore = defineStore('legend', {
             state.cards = [...state.cards].sort(sorter).sort(sorterInstruction);
             return state
         },
+        getActiveCard() {
+          console.log(this.newCardOpenIndex);
+          return this.newCardOpenIndex;
+        },
+        getLegendTitle() {
+          return {
+            'series': this.series,
+            'number': this.number,
+            'title': this.name
+          }
+        }
         /*getCard(id, state) {
         console.log(state.cards)
         console.log(id);
@@ -66,7 +77,27 @@ export const useLegendStore = defineStore('legend', {
     },
     actions: {
         blankLegend() {
-            Object.assign(this, blankLegend);
+            //Object.assign(this, blankLegend);
+            this.$state = {
+              name: '',
+              slug: null,
+              author: "",
+              abstract: "",
+              year:"",
+              players: "",
+              difficulty: [],
+              officialBonus: false,
+              board: [],
+              boxExt: [],
+              additionaldownload: null,
+              download: null,
+              type: 'single',
+              series: null,
+              number: null,
+              newCardOpenIndex: 1,
+              showPdf: false,
+              cards: []
+          }
         },
         sampleLegend() {
           Object.assign(this, sampleLegend);
