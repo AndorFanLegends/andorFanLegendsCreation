@@ -63,11 +63,12 @@ export const useLegendStore = defineStore('legend', {
           console.log(this.newCardOpenIndex);
           return this.newCardOpenIndex;
         },
-        getLegendTitle() {
+        getLegendDetail() {
           return {
             'series': this.series,
             'number': this.number,
-            'title': this.name
+            'name': this.name,
+            'type': this.type
           }
         }
         /*getCard(id, state) {

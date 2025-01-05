@@ -250,7 +250,7 @@
                                     </v-table>
                                 </v-col>
                                 <v-col cols="8" md="8">
-                                    <CardsView :cardData="parentCardData" :legend="legend"/>
+                                    <CardsView :cardData="parentCardData" :legend="getLegendDetail()"/>
                                 </v-col>
                                 </v-row>
                                 <!--<v-card-text>
