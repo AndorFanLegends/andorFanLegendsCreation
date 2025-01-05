@@ -27,7 +27,8 @@
     settingsStore.activeLanguage = t.locale.value;
 
     // Utilisation d'une référence réactive pour legend
-    const legend = (legendStore.getLegend);
+    const legend = reactive(legendStore.getLegend);
+    //const legendDetail = computed(() => legendStore.getLegendDetail);
 
     const parentCardData = ref({
                 type: null,
@@ -250,7 +251,7 @@
                                     </v-table>
                                 </v-col>
                                 <v-col cols="8" md="8">
-                                    <CardsView :cardData="parentCardData" :legend="getLegendDetail()"/>
+                                    <CardsView :cardData="parentCardData" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" />
                                 </v-col>
                                 </v-row>
                                 <!--<v-card-text>

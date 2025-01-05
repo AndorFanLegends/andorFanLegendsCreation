@@ -39,7 +39,7 @@
             jsPDF: {
                 unit: 'mm', format: 'a4', orientation: 'portrait'
             },
-            pagebreak: { mode: ['avoid-all'] },
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy',] },
             scrollY: 0
         };
         html2pdf().from(content).set(options).save();
@@ -69,8 +69,6 @@ const completeChunks = (chunks, chunkSize) => {
         }
         return chunk;
     });
-//    console.log("COMPLETE CHUNK");
-//    console.log(completeChunks)
     return completeChunks;
 };
 // Calculer les groupes de 4 éléments pour chaque page
@@ -101,32 +99,32 @@ const reorganizeItems = (page) => {
                     <v-radio :label="$t('classicColor')" value="color" ></v-radio>
                     <v-radio :label="$t('blackWhite')" value="blackWhite" disabled="disabled"></v-radio>
                 </v-radio-group>
-                <!--<div class="radio-buttons">
-                    <label><input type="radio" value="bothSide" v-model="printFormat" /> {{ $t('foldingCard') }}</label>
-                    <label><input type="radio" value="singleSide" v-model="printFormat" /> {{ $t('duplexPrinting') }}</label>
-                </div>-->
-                <v-btn variant="tonal" @click="exportToPDF">Export to PDF</v-btn>
+                <v-btn class="green lighten-1" variant="tonal" @click="exportToPDF">Export to PDF</v-btn>
                 <v-btn icon @click="closeDialog"> <v-icon>mdi-close</v-icon> </v-btn>
             </v-toolbar>
             <v-card-text>
                 <v-container v-if="printFormat === 'bothSide'" id="pdfContentBothSide">
                     <div v-for="(card, index) in legend.cards" :key="card.id" class="cards2print"> <!-- -->
-                        <CardPreview :card-data="card" :name="legend.name" :type="card.type" :class="{pageBreak: (index % 2 === 0)}"  style="margin: 0 auto;" />
+                        <CardPreview :card-data="card" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" :class="{pageBreak: (index % 2 === 0)}"  style="margin: 0 auto;" />
                         <v-spacer></v-spacer>
                     </div>
                 </v-container>
                 <v-container v-if="printFormat === 'singleSide'" id="pdfContentSingleSide">
                     <div v-for="(page, pageIndex) in paginatedItems" :key="pageIndex" class="page">
-                        <!-- Affichage des rectos -->
-                        <div class="item" v-for="(card, itemIndex) in page" :key="itemIndex">
-                            <CardPreviewRecto :card-data="card" :name="legend.name" :type="card.type" :class="{pageBreak: (index % 2 === 0)}"  style="margin: 0 auto;" />
-                        </div>
+                        <v-row class="d-flex justify-center">
+                                <!-- Affichage des rectos -->
+                                <v-col cols="6" v-for="(card, itemIndex) in page" :key="itemIndex" :class="{'d-flex justify-center': itemIndex % 2 === 0}">
+                                    <CardPreviewRecto :card-data="card" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" :class="{pageBreak: (index % 2 === 0)}"  style="margin: 0 auto;" />
+                                </v-col>
+                        </v-row>
                         <v-spacer class="pageBreak"></v-spacer>
-                        <!-- Affichage des versos -->
-                        <div class="item" v-for="(card, itemIndex) in reorganizeItems(page)" :key="itemIndex">
-                            <CardPreviewVerso :card-data="card" :name="legend.name" :type="card.type" :class="{pageBreak: (index % 2 === 0)}"  style="margin: 0 auto;" />
-                        </div>
-                        <hr>
+                        <v-row class="d-flex justify-center">
+                                <!-- Affichage des versos -->
+                                <v-col cols="6" v-for="(card, itemIndex) in reorganizeItems(page)" :key="itemIndex" :class="{'d-flex justify-center': itemIndex % 2 === 0}">
+                                    <CardPreviewVerso :card-data="card" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" :class="{pageBreak: (index % 2 === 0)}"  style="margin: 0 auto;" />
+                                </v-col>
+                        </v-row>
+                        <v-spacer class="pageBreak"></v-spacer>
                     </div>
                 </v-container>
             </v-card-text>
@@ -148,16 +146,29 @@ const reorganizeItems = (page) => {
     .card{
         width:162mm !important;
         height:120mm !important;
+        background: none;
     }
     /*.item {
         width:162mm !important;
         height:120mm !important;
     }*/
+    .v-container{
+        padding:2px 0 0 0;
+    }
+    .page{
+        margin:0px;
+    }
+    .v-card-text{
+        padding:0px;
+    }
+    .v-col {
+        padding:0px;
+    }
     #pdfContentSingleSide .card {
         float: left;
         width:307px !important;
-        margin-right: 90px !important;
-        margin-bottom:50px !important;
+        /*margin-right: 90px !important;*/
+        /*margin-bottom:50px !important;*/
     }
 
     

@@ -5,7 +5,32 @@
     import {useLegendStore} from "./../../stores/legend";
     
     // Déclarer les props const 
-    const props = defineProps({ cardData: { type: Object, required: true, }, legend: { type: Object, required: true, } }); 
+    const props = defineProps({
+        cardData: { 
+            type: Object,
+            required: true,
+        },
+        /*legend: {
+            type: Object,
+            required: true,
+        }*/
+        name: {
+            type: String,
+            required: true
+        },
+        type: {
+            type: String,
+            default: 'single'
+        },
+        series: {
+            type: String,
+            default: ''
+        },
+        number: {
+            type: String,
+            default: ''
+        }
+    }); 
     // Utiliser toRefs pour rendre les props réactives 
     const { cardData } = toRefs(props);
 
@@ -67,7 +92,7 @@
         </div>
     </v-container>
     <v-container>
-        <CardPreview :card-data="cardData" :name="legend.name" :type="cardData.type"  style="margin: 0 auto;" />
+        <CardPreview :card-data="cardData" :name="name" :series="series" :number="number" :type="type"  style="margin: 0 auto;" />
         <!-- :name="name" :type="type" :series="series" :number="number"-->
     </v-container>
 </template>
