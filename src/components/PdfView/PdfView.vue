@@ -29,28 +29,24 @@
             content = document.getElementById('pdfContentSingleSide');
         }
         const options = {
-            margin: [10,10,10,10],
+            margin: [5,5,5,5],
             filename: 'modale-contenu.pdf',
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: {
-                scale: 1.2,
+                scale: 1,
                 scrollY: 0
             },
             jsPDF: {
                 unit: 'mm', format: 'a4', orientation: 'portrait'
             },
-            pagebreak: { mode: ['avoid-all', 'css', 'legacy',] },
+            pagebreak: { 
+                mode: ["specify"],
+                after: ['.after'],
+            }, //, 'avoid-all'
             scrollY: 0
         };
         html2pdf().from(content).set(options).save();
-        /*html2pdf().from(content).set(options).toPdf().get('pdf').then((pdf) => {
-            // Désactiver la première page blanche
-            pdf.deletePage(1);
-        }).save();*/
     };
-
-
-//const items = ref(legend.cards.value);
 
 // Fonction pour diviser les éléments en groupes de 4 
 const chunkArray = (array, chunkSize) => {
@@ -110,21 +106,19 @@ const reorganizeItems = (page) => {
                     </div>
                 </v-container>
                 <v-container v-if="printFormat === 'singleSide'" id="pdfContentSingleSide">
-                    <div v-for="(page, pageIndex) in paginatedItems" :key="pageIndex" class="page">
-                        <v-row class="d-flex justify-center">
+                    <div v-for="(page, pageIndex) in paginatedItems" :key="pageIndex">
+                        <v-row class="d-flex justify-center page after">
                                 <!-- Affichage des rectos -->
-                                <v-col cols="6" v-for="(card, itemIndex) in page" :key="itemIndex" :class="{'d-flex justify-center': itemIndex % 2 === 0}">
-                                    <CardPreviewRecto :card-data="card" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" :class="{pageBreak: (index % 2 === 0)}"  style="margin: 0 auto;" />
+                                <v-col cols="6" v-for="(card, itemIndex) in page" :key="itemIndex" :class="{'d-flex justify-center': itemIndex % 2 === 0, 'empty': !card.type}">
+                                    <CardPreviewRecto :card-data="card" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" :class="{pageBreak: (index % 2 === 0)} "  style="margin: 0 auto;" />
                                 </v-col>
                         </v-row>
-                        <v-spacer class="pageBreak"></v-spacer>
-                        <v-row class="d-flex justify-center">
+                        <v-row class="d-flex justify-center page after">
                                 <!-- Affichage des versos -->
-                                <v-col cols="6" v-for="(card, itemIndex) in reorganizeItems(page)" :key="itemIndex" :class="{'d-flex justify-center': itemIndex % 2 === 0}">
+                                <v-col cols="6" v-for="(card, itemIndex) in reorganizeItems(page)" :key="itemIndex" :class="{'d-flex justify-center': itemIndex % 2 === 0, 'empty': !card.type}">
                                     <CardPreviewVerso :card-data="card" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" :class="{pageBreak: (index % 2 === 0)}"  style="margin: 0 auto;" />
                                 </v-col>
                         </v-row>
-                        <v-spacer class="pageBreak"></v-spacer>
                     </div>
                 </v-container>
             </v-card-text>
@@ -148,42 +142,16 @@ const reorganizeItems = (page) => {
         height:120mm !important;
         background: none;
     }
-    /*.item {
-        width:162mm !important;
-        height:120mm !important;
-    }*/
-    .v-container{
-        padding:2px 0 0 0;
-    }
-    .page{
-        margin:0px;
-    }
-    .v-card-text{
-        padding:0px;
-    }
-    .v-col {
-        padding:0px;
-    }
     #pdfContentSingleSide .card {
         float: left;
         width:307px !important;
         /*margin-right: 90px !important;*/
         /*margin-bottom:50px !important;*/
     }
-
-    
-
-/*
-.card :deep(ul) {
-  padding-left: 1.1rem;
-  margin: 0;
-}
-
-.card :deep(ol) {
-  padding-left: 1rem;
-}
-
-.card :deep(li) {
-  padding: 2px 0;
-}*/
+    #pdfContentSingleSide .v-row:first-of-type {
+        margin-top:50px;
+    }
+    .empty {
+        visibility: hidden;
+    }
 </style>
