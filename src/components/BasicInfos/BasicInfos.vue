@@ -14,9 +14,6 @@ const legend = ref(props.legend);
 
 <template>
     <v-row>
-        <v-checkbox 
-            v-bind:label="$t('officialLegend')"
-            v-model="legend.officialBonus" hide-details cols="12"></v-checkbox>
         <v-col cols="12">
             <v-text-field
                 v-model="legend.author"
@@ -41,6 +38,7 @@ const legend = ref(props.legend);
                 required
                 hide-details
             ></v-text-field>
+            <small class="form-text text-muted">Add just one year. Ex : 2014. </small>
         </v-col>
         <v-col cols="12">
             <v-text-field
@@ -50,6 +48,7 @@ const legend = ref(props.legend);
                 required
                 hide-details
             ></v-text-field>
+            <small class="form-text text-muted">1 (if for solo Hero); 2-4 (if legend for 2 to 4 Heros) </small>
         </v-col>
         <v-col cols="12">
             <label class="v-label d-flex">{{ $t("difficulty") }}</label>
@@ -96,5 +95,8 @@ const legend = ref(props.legend);
                 </v-chip>
             </v-chip-group>
         </v-col>
+        <v-checkbox 
+            v-bind:label="$t('officialLegend')"
+            v-model="legend.officialBonus" hide-details cols="12"></v-checkbox>
     </v-row>
 </template>
