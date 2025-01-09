@@ -7,6 +7,7 @@
     import CardsView from "./components/Cards/CardsView";
     import SettingsView from "./components/SettingsView/SettingsView";
     import PdfView from "./components/PdfView/PdfView";
+    import HowToView from "./components/HowToView/HowToView";
 
     // Interfaces
     const drawer = ref(true)
@@ -80,7 +81,6 @@
     const dialogPdfPreview = ref(false);
     const modalPdfPreview = ref(null);
     const handlePdfPreview = () => {
-        console.log(modalPdfPreview.value);
         if (modalPdfPreview.value) { 
             dialogPdfPreview.value = true;
         }
@@ -89,6 +89,19 @@
         dialogPdfPreview.value = val; 
     };
 
+    // Modal How To
+    const dialogHowTo = ref(false);
+    const modalHowTo = ref(null);
+    const handleHowTo = () => {
+        if (modalHowTo.value) { 
+            dialogHowTo.value = true;
+        }
+    };
+    const updateHowToDialog = (val) => { 
+        dialogHowTo.value = val; 
+    };
+
+    // Others Menu Link
     function newBlankLegend() {
         legendStore.blankLegend();
     }
@@ -151,6 +164,11 @@
 
             <v-app-bar-title>Andor Fan Legend Creation</v-app-bar-title>
 
+            <v-btn icon="mdi-cog">
+                <v-tooltip activator="parent" >
+                        Tooltip
+                </v-tooltip>
+            </v-btn>
             <template v-slot:append>
                 <v-btn icon="mdi-cog"  @click="handleSettings"></v-btn>
                 <SettingsView :dialog="dialog" ref="modal" @update:dialog="updateSettingDialog"></SettingsView><!---->
@@ -180,6 +198,11 @@
                 <v-list-item :disabled="legend.cards.length == 0" @click="handlePdfPreview" prepend-icon="mdi-file-pdf-box">
                     <v-list-item-title>{{ $t('exportPdfFile') }}</v-list-item-title>
                     <PdfView :dialog="dialogPdfPreview" ref="modalPdfPreview" @update:dialogPdfPreview="updatePdfPreviewDialog"></PdfView>
+                </v-list-item>
+                <v-list-item prepend-icon="mdi-file-question-outline"
+                    @click="handleHowTo">
+                    <v-list-item-title>{{ $t('howTo') }}</v-list-item-title>
+                    <howToView  :dialog="dialogHowTo" ref="modalHowTo" @update:dialogHowTo="updateHowToDialog"></howToView>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>  
