@@ -1,5 +1,5 @@
 import { defineStore} from 'pinia'; // , storeToRefs
-import Nanoid from 'nanoid';
+import nanoid from 'nanoid';
 
 export const useLegendStore = defineStore('legend', {
     state: () => (blankLegend),
@@ -44,6 +44,7 @@ export const useLegendStore = defineStore('legend', {
               type: 'single',
               series: null,
               number: null,
+              theme: null,
               newCardOpenIndex: 1,
               showPdf: false,
               cards: []
@@ -63,7 +64,7 @@ export const useLegendStore = defineStore('legend', {
             }  
         },
         addNewCard() {
-            const newId = Nanoid();
+            const newId = nanoid();
             this.cards.push({
                 name: '',
                 slug: '',
@@ -130,6 +131,7 @@ const blankLegend = {
     type: 'single',
     series: null,
     number: null,
+    theme: 'classicalTheme',
     newCardOpenIndex: 1,
     showPdf: false,
     cards: []
@@ -151,6 +153,7 @@ const sampleLegend = {
   type: 'single',
   series: null,
   number: null,
+  theme: 'classicalTheme',
   newCardOpenIndex: 1,
   showPdf: false,
   cards: [{

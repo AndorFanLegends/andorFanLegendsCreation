@@ -29,7 +29,11 @@
         number: {
             type: String,
             default: ''
-        }
+        },
+        theme: {
+            type: String,
+            default: 'classicalTheme'
+        },
     }); 
     // Utiliser toRefs pour rendre les props réactives 
     const { cardData } = toRefs(props);
@@ -92,7 +96,7 @@
         </div>
     </v-container>
     <v-container>
-        <CardPreview :card-data="cardData" :name="name" :series="series" :number="number" :type="type"  style="margin: 0 auto;" />
+        <CardPreview :card-data="cardData" :name="name" :series="series" :number="number" :type="type" :theme="theme" style="margin: 0 auto;" />
         <!-- :name="name" :type="type" :series="series" :number="number"-->
     </v-container>
 </template>

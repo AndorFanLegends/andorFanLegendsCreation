@@ -29,6 +29,15 @@
 
     // Utilisation d'une référence réactive pour legend
     const legend = reactive(legendStore.getLegend);
+    //const selectedTheme = ref(legendStore.theme);
+    /*const selectedTheme = computed({ 
+        get: () => legendStore.theme, 
+        set: (value) => legendStore.updateTheme(value), }
+    );*/
+
+    /*function updateTheme(){
+        legendStore.updateTheme(value);
+    }*/
     //const legendDetail = computed(() => legendStore.getLegendDetail);
 
     const parentCardData = ref({
@@ -252,6 +261,12 @@
                                 <v-row>
                                 <!--<v-navigation-drawer permanent height="100vh" position="left" >-->
                                 <v-col cols="4" md="4">
+                                    <p class="small-radio">
+                                        <v-radio-group  v-model="legend.theme" inline label="Thème" name="Theme"> 
+                                            <v-radio v-bind:label="$t('classicalTheme')" value="classicalTheme"></v-radio>
+                                            <v-radio v-bind:label="$t('frostTheme')" value="frostTheme"></v-radio>
+                                        </v-radio-group>
+                                    </p>
                                     <v-btn @click="handleNewCard()" prepend-icon="mdi-plus" outline right>{{ $t('newCard') }}</v-btn><br>
                                     
                                     <v-table id="cardList" >
@@ -281,7 +296,7 @@
                                     </v-table>
                                 </v-col>
                                 <v-col cols="8" md="8">
-                                    <CardsView :cardData="parentCardData" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" />
+                                    <CardsView :cardData="parentCardData" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" :theme="legend.theme" />
                                 </v-col>
                                 </v-row>
                                 <!--<v-card-text>
@@ -316,5 +331,21 @@
 
 .right{
     height: calc(100%) !important;
+}
+
+
+.small-radio i {
+    font-size: 19px;
+}
+.small-radio label {
+    font-size: 14px;
+    padding-left: 0px;
+    margin-left: -4px;
+}
+.small-radio .v-radio {
+    padding: 0px;
+}
+.small-radio [class*="__ripple"] {
+    left: 0;
 }
 </style>
