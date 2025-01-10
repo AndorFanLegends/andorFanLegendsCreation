@@ -48,6 +48,7 @@
     }
 
     function handleEdit(id) {
+        //console.log(id)
         legendStore.activeCard(id);
         parentCardData.value = legendStore.cards.find(
             i => i.id === legendStore.newCardOpenIndex
@@ -128,6 +129,12 @@
                 legendStore.$state = newState
                 // Forcer l'ordre
                 legendStore.getLegend;
+                // Activer la 1ere carte
+                if (legendStore.cards.length > 0 ) {
+                    parentCardData.value = legendStore.cards.find(
+                        i => i.id === 1
+                    );
+                }
             };
             // Start reading file
             reader.readAsText(file);

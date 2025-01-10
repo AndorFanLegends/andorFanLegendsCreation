@@ -9,7 +9,7 @@ export const useLegendStore = defineStore('legend', {
             return state
         },
         getActiveCard() {
-          console.log(this.newCardOpenIndex);
+          //console.log(this.newCardOpenIndex);
           return this.newCardOpenIndex;
         }/*,
         getLegendDetail() {
