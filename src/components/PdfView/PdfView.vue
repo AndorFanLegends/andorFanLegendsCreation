@@ -101,7 +101,7 @@ const reorganizeItems = (page) => {
             <v-card-text>
                 <v-container v-if="printFormat === 'bothSide'" id="pdfContentBothSide">
                     <div v-for="(card, index) in legend.cards" :key="card.id" class="cards2print"> <!-- -->
-                        <CardPreview :card-data="card" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" :class="{pageBreak: (index % 2 === 0)}"  style="margin: 0 auto;" />
+                        <CardPreview :card-data="card" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" :class="{pageBreak: (index % 2 === 0)}" :theme="legend.theme" style="margin: 0 auto;" />
                         <v-spacer></v-spacer>
                     </div>
                 </v-container>
@@ -110,7 +110,7 @@ const reorganizeItems = (page) => {
                         <v-row class="d-flex justify-center page after">
                                 <!-- Affichage des rectos -->
                                 <v-col cols="6" v-for="(card, itemIndex) in page" :key="itemIndex" :class="{'d-flex justify-center': itemIndex % 2 === 0, 'empty': !card.type}">
-                                    <CardPreviewRecto :card-data="card" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" :class="{pageBreak: (index % 2 === 0)} "  style="margin: 0 auto;" />
+                                    <CardPreviewRecto :card-data="card" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" :class="{pageBreak: (index % 2 === 0)} " :theme="legend.theme" style="margin: 0 auto;" />
                                 </v-col>
                         </v-row>
                         <v-row class="d-flex justify-center page after">
