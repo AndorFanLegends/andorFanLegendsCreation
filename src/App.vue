@@ -72,6 +72,9 @@
             parentCardData.value = legendStore.cards[0];/*.find(
                 i => i.id === legend.newCardOpenIndex
             );*/
+            if(legendStore.cards.length === 0) {
+                parentCardData.value = {}
+            }
         }
     }
 
@@ -259,45 +262,45 @@
                             </v-window-item>
                             <v-window-item value="cards">
                                 <v-row>
-                                <!--<v-navigation-drawer permanent height="100vh" position="left" >-->
-                                <v-col cols="4" md="4">
-                                    <p class="small-radio">
-                                        <v-radio-group  v-model="legend.theme" inline label="Thème" name="Theme"> 
-                                            <v-radio v-bind:label="$t('classicalTheme')" value="classicalTheme"></v-radio>
-                                            <v-radio v-bind:label="$t('frostTheme')" value="frostTheme"></v-radio>
-                                        </v-radio-group>
-                                    </p>
-                                    <v-btn @click="handleNewCard()" prepend-icon="mdi-plus" outline right>{{ $t('newCard') }}</v-btn><br>
-                                    
-                                    <v-table id="cardList" >
-                                        <thead>
-                                            <tr>
-                                                <th class="text-left">{{ $t('list.cardName') }}</th>
-                                                <th class="text-left">{{ $t('list.cardAction') }}</th>
+                                    <!--<v-navigation-drawer permanent height="100vh" position="left" >-->
+                                    <v-col cols="4" md="4">
+                                        <p class="small-radio">
+                                            <v-radio-group  v-model="legend.theme" inline label="Thème" name="Theme"> 
+                                                <v-radio v-bind:label="$t('classicalTheme')" value="classicalTheme"></v-radio>
+                                                <v-radio v-bind:label="$t('frostTheme')" value="frostTheme"></v-radio>
+                                            </v-radio-group>
+                                        </p>
+                                        <v-btn @click="handleNewCard()" prepend-icon="mdi-plus" outline right>{{ $t('newCard') }}</v-btn><br>
+                                        
+                                        <v-table id="cardList" >
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-left">{{ $t('list.cardName') }}</th>
+                                                    <th class="text-left">{{ $t('list.cardAction') }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr
+                                                v-for="card in legend.cards"
+                                                :key="card.id">
+                                                <td class="cardName">{{ card.name }}</td>
+                                                <td class="cardAction">
+                                                    <v-btn class="mx-2" small fab  dark density="compact" color="primary"
+                                                        @click="handleEdit(card.id)">
+                                                        <v-icon small dark>mdi-pencil</v-icon>
+                                                    </v-btn>
+                                                    <v-btn fab  dark density="compact" small color="red"
+                                                        @click="handleDelete(card.id)">
+                                                        <v-icon small dark>mdi-delete</v-icon>
+                                                    </v-btn>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr
-                                            v-for="card in legend.cards"
-                                            :key="card.id">
-                                            <td class="cardName">{{ card.name }}</td>
-                                            <td class="cardAction">
-                                                <v-btn class="mx-2" small fab  dark density="compact" color="primary"
-                                                    @click="handleEdit(card.id)">
-                                                    <v-icon small dark>mdi-pencil</v-icon>
-                                                </v-btn>
-                                                <v-btn fab  dark density="compact" small color="red"
-                                                    @click="handleDelete(card.id)">
-                                                    <v-icon small dark>mdi-delete</v-icon>
-                                                </v-btn>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </v-table>
-                                </v-col>
-                                <v-col cols="8" md="8">
-                                    <CardsView :cardData="parentCardData" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" :theme="legend.theme" />
-                                </v-col>
+                                            </tbody>
+                                        </v-table>
+                                    </v-col>
+                                    <v-col cols="8" md="8">
+                                        <CardsView :cardData="parentCardData" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" :theme="legend.theme" />
+                                    </v-col>
                                 </v-row>
                                 <!--<v-card-text>
                                 <CardsTabs :legend="legend"></CardsTabs>
