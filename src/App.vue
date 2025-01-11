@@ -1,5 +1,5 @@
 <script setup>
-    import {ref, reactive} from 'vue';
+    import {ref, reactive, computed} from 'vue';
     import { useI18n } from "vue-i18n";
     import { saveAs } from "file-saver";
     import MainInfos from  "./components/MainInfos/MainInfos";
@@ -47,6 +47,14 @@
                 text: null,
                 id: null
             });
+
+    //const formDisabled = ref(true)
+    const formDisabled = computed(() => {
+        if(legend.cards.length === 0){
+            return true;
+        }
+        return false;
+    });
 
     // Fonctions de Gestion des cartes
     function handleNewCard() {
@@ -299,7 +307,7 @@
                                         </v-table>
                                     </v-col>
                                     <v-col cols="8" md="8">
-                                        <CardsView :cardData="parentCardData" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" :theme="legend.theme" />
+                                        <CardsView :cardData="parentCardData" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" :theme="legend.theme" :formDisabled="formDisabled" />
                                     </v-col>
                                 </v-row>
                                 <!--<v-card-text>
