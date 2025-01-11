@@ -1,6 +1,6 @@
 <script setup>
 /* eslint-disable */ 
-    import {computed, reactive, toRefs} from 'vue'
+    import {computed, ref, reactive, toRefs} from 'vue'
     import CardPreview from "andor-legendcard";
     import {useLegendStore} from "./../../stores/legend";
     
@@ -10,10 +10,6 @@
             type: Object,
             required: true,
         },
-        /*legend: {
-            type: Object,
-            required: true,
-        }*/
         name: {
             type: String,
             required: true
@@ -34,25 +30,25 @@
             type: String,
             default: 'classicalTheme'
         },
+        formDisabled: {
+            type: Boolean,
+            required: true,
+            default: true
+        }
     }); 
     // Utiliser toRefs pour rendre les props réactives 
     const { cardData } = toRefs(props);
-
-    /*const legend = useLegendStore().getLegend
-    const isCardsEmpty = computed(() => {
-        useLegendStore().getActiveCard;
-        legend.cards.length === 0
-    });*/
 
 </script>
 
 <template>
     <v-container>
         <v-text-field
+            :disabled="formDisabled"
             v-bind:label="$t('cardName')"
             v-model="cardData.name"></v-text-field>
         <label class="v-label d-flex">{{ $t('cardType') }}</label>
-        <v-radio-group inline v-model="cardData.type" >
+        <v-radio-group inline v-model="cardData.type" :disabled="formDisabled">
             <v-radio
                 v-bind:label="$t('type.letter')"
                 value="letter"></v-radio>
@@ -70,6 +66,7 @@
                 value="custom"></v-radio>
         </v-radio-group>
         <v-text-field 
+
             v-if="(cardData.type === 'custom' || cardData.type === 'instruction')"
             :disabled="(cardData.type === 'letter')"
             placeholder="La carte est révélée lorsque"
@@ -77,6 +74,7 @@
             v-bind:label="$t('cardSubTitle')" 
             v-model="cardData.subname"></v-text-field>
         <v-textarea
+            :disabled="formDisabled"
             v-model="cardData.text"
             v-if="(cardData.type !== 'end')"
             v-bind:label="$t('cardText')"
