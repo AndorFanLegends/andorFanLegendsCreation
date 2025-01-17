@@ -8,6 +8,7 @@
     import SettingsView from "./components/SettingsView/SettingsView";
     import PdfView from "./components/PdfView/PdfView";
     import HowToView from "./components/HowToView/HowToView";
+    import {slugify} from "./functions/slugify.js"
 
     // Interfaces
     const drawer = ref(true)
@@ -34,7 +35,16 @@
         legend.slug = setLegendSlug(legend);
     } );
 
-    function slugify(string) {
+    /*watch( () => legendStore.cards, () => {
+        //legend.slug = setLegendSlug(legend);
+        console.log("tototo");
+        //legendStore.sortCards()
+        //return [...legendStore.cards].sort(sorter).sort(sorterInstruction);
+    },
+    { deep: true }
+    );*/
+
+/*    function slugify(string) {
         const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœṕŕßśșțùúüûǘẃẍÿź·/_,:;'
         const b = 'aaaaaaaaceeeeghiiiimnnnoooooprssstuuuuuwxyz------'
         const p = new RegExp(a.split('').join('|'), 'g')
@@ -48,7 +58,7 @@
             .replace(/\-\-+/g, '-') // eslint-disable-line no-useless-escape 
             .replace(/^-+/, '') // Trim - from start of text
             .replace(/-+$/, '') // Trim - from end of text */
-    }
+    //}
 
     function setLegendSlug(legend) {
         if (legend.series != null  && legend.number != null) {
@@ -167,7 +177,7 @@
                 legendStore.$state = newState
                 // Forcer l'ordre
                 legendStore.getLegend;
-                //console.log("CARD=" + legendStore.cards.length)
+                legendStore.sortCards();
                 // Activer la 1ere carte
                 if (legendStore.cards.length > 0 ) {
                     /*parentCardData.value = legendStore.cards.find(

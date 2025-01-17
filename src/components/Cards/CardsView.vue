@@ -1,9 +1,12 @@
 <script setup>
 /* eslint-disable */ 
-    import {computed, ref, reactive, toRefs} from 'vue'
+    import {computed, ref, reactive, toRefs, watch} from 'vue'
     import CardPreview from "andor-legendcard";
     import {useLegendStore} from "./../../stores/legend";
     
+    const legendStore = useLegendStore();
+    const updateCardName = legendStore.updateCardName
+
     // Déclarer les props const 
     const props = defineProps({
         cardData: { 
@@ -39,6 +42,11 @@
     // Utiliser toRefs pour rendre les props réactives 
     const { cardData } = toRefs(props);
 
+    watch( () => name, () => {
+        //legend.slug = setLegendSlug(legend);
+        console.log(" nom de carte")
+    } );
+
 </script>
 
 <template>
@@ -46,6 +54,7 @@
         <v-text-field
             :disabled="formDisabled"
             v-bind:label="$t('cardName')"
+            @input="updateCardName(cardData.id, cardData.name)"
             v-model="cardData.name"></v-text-field>
         <label class="v-label d-flex">{{ $t('cardType') }}</label>
         <v-radio-group inline v-model="cardData.type" :disabled="formDisabled">
