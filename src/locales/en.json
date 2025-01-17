@@ -45,6 +45,8 @@
     "howto": {
         "warning": "The Legends creator is in <b>BETA</b> version, and deserves to be tested for longer and by more people.<br><b>Save early and often.</b>"
     },
+    "classicalTheme": "Classical",
+    "frostTheme": "Eternal Frost",
     "cardName": "Name of the Card",
     "cardType": "Type of Card",
     "type": {

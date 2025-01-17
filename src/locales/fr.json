@@ -45,6 +45,8 @@
     "howto": {
         "warning": "Le créateur de Légendes est en <b>version BETA</b>, et mérite d'être testé longtemps et par un plus grand nombre.<br><b>Sauvegarder tôt et souvent.</b>"
     },
+    "classicalTheme": "Classique",
+    "frostTheme": "Froid Eternel",
     "cardName": "Nom de la Carte",
     "cardType": "Type de Carte",
     "type": {

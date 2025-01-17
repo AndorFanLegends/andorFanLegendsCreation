@@ -45,6 +45,8 @@
     "howto": {
         "warning": "Der Legendenschöpfer befindet sich in der <b>Betaversion</b> und verdient es, lange und von mehr Menschen getestet zu werden.<br><b>Früh und oft speichern.</b>"
     },
+    "classicalTheme": "klassisches",
+    "frostTheme": "Ewige Kälte",
     "cardName": "Name der Karte",
     "cardType": "Typ der Karte",
     "type": {
