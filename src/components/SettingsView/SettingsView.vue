@@ -86,40 +86,6 @@
         </v-card>
     </v-dialog>
 </template>
-<!--
-<template>
-    <v-dialog
-      v-model="dialog"
-      width="auto"
-    >
-    <v-container>
-    <section class="page">
-        <v-row class="center">
-            <v-col >
-                <p class="text-h5">{{ $t("settings.availableLanguages") }}</p>
-                <v-radio-group  v-model="selectedLng" mandatory>
-                    <v-radio v-for="languageOpt in options.availableLanguagesOptions"
-                        :label="languageOpt.name"
-                        :key="languageOpt.key"
-                        :value="languageOpt.key"
-                        @change="languageRadioHandler(languageOpt.key)"
-                    ></v-radio>
-                </v-radio-group>
-            </v-col>
-        </v-row>
-        <v-btn block class="text-none mb-4" color="indigo-darken-3" size="x-large" variant="flat"
-            @click="applySettings">
-            {{ $t("settings.apply") }}
-        </v-btn>
-        <v-btn block class="text-none" color="grey-lighten-3" size="x-large" variant="flat"
-            @click="cancelSettings">
-            {{ $t("settings.cancel") }}
-        </v-btn>
-    </section>
-    </v-container>
-</v-dialog>
-</template>
--->
 
 <style>
 .page {
