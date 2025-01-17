@@ -179,11 +179,13 @@
                 legendStore.$state = newState
                 // Forcer l'ordre
                 legendStore.getLegend;
+                //console.log("CARD=" + legendStore.cards.length)
                 // Activer la 1ere carte
                 if (legendStore.cards.length > 0 ) {
-                    parentCardData.value = legendStore.cards.find(
+                    /*parentCardData.value = legendStore.cards.find(
                         i => i.id === 1
-                    );
+                    );*/
+                    parentCardData.value = legend.cards[0];
                 }
             };
             // Start reading file

@@ -9,7 +9,7 @@
     });
     const legend = ref(props.legend);
 
-    let cardData = reactive()
+    let cardData = reactive(null)
 
     function handleDelete(id) {
       if (window.confirm("Voulez-vous vraiment supprimer cette carte ?")) {
