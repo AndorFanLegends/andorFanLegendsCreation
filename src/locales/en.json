@@ -42,6 +42,9 @@
         "yearFormat": "Add just one year. Ex : 2014.",
         "playerFormat": "1 (if for solo Hero); 2-4 (if legend for 2 to 4 Heros)"
     },
+    "howto": {
+        "warning": "The Legends creator is in <b>BETA</b> version, and deserves to be tested for longer and by more people.<br><b>Save early and often.</b>"
+    },
     "cardName": "Name of the Card",
     "cardType": "Type of Card",
     "type": {

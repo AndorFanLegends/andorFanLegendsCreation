@@ -33,7 +33,12 @@
             <v-card-text>
                 <v-row justify="center"> 
                     <v-col cols="12" md="6">
-
+                        <v-alert class="warning"
+                            v-html="$t('howto.warning')"
+                            title="Beta version"
+                            type="warning">
+                        </v-alert>
+                        <v-spacer><br></v-spacer>
                         <h2>Available Markdowns</h2>
                         <v-table>
                             <thead>
@@ -116,6 +121,9 @@
                             Don't forget to add the legend <b>Language</b> in description, and other necessary information.<br>
                             Then attach the Json File to the issue, and submit.
                         </p>
+                        <v-spacer><br></v-spacer>
+                        <h2>BUGS ?</h2>
+                        Create issues : <a href="https://github.com/AndorFanLegends/andorFanLegendsCreation/issues">Github andorFanLegendsCreation issues </a>
                     </v-col>
                 </v-row>
             </v-card-text>
@@ -143,5 +151,9 @@ blockquote {
   background: rgb(252,224,135);
   background: linear-gradient(180deg, rgba(252,224,135,1) 0%, rgba(253,247,214,1) 100%);
   padding: 5px;
+}
+
+.warning {
+    display: block;
 }
 </style>
