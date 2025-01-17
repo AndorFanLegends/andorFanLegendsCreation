@@ -74,7 +74,8 @@ export const useLegendStore = defineStore('legend', {
                 id: newId
             });
             return newId;
-        }
+        },
+        
     }
 })
 

@@ -1,5 +1,5 @@
 <script setup>
-    import {ref, reactive, computed} from 'vue';
+    import {ref, reactive, computed, watch} from 'vue';
     import { useI18n } from "vue-i18n";
     import { saveAs } from "file-saver";
     import MainInfos from  "./components/MainInfos/MainInfos";
@@ -29,6 +29,36 @@
 
     // Utilisation d'une référence réactive pour legend
     const legend = reactive(legendStore.getLegend);
+
+    watch( () => legend.name, () => {
+        legend.slug = setLegendSlug(legend);
+    } );
+
+    function slugify(string) {
+        const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœṕŕßśșțùúüûǘẃẍÿź·/_,:;'
+        const b = 'aaaaaaaaceeeeghiiiimnnnoooooprssstuuuuuwxyz------'
+        const p = new RegExp(a.split('').join('|'), 'g')
+        return string.toString().toLowerCase()
+            .replace(/\s+/g, '-') // Replace spaces with -
+            .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
+            .replace(/&/g, '-and-') // Replace & with ‘and’
+            // Remove all non-word characters 
+            .replace(/[^\w\-]+/g, '') // eslint-disable-line no-useless-escape 
+            // Replace multiple - with single -
+            .replace(/\-\-+/g, '-') // eslint-disable-line no-useless-escape 
+            .replace(/^-+/, '') // Trim - from start of text
+            .replace(/-+$/, '') // Trim - from end of text */
+    }
+
+    function setLegendSlug(legend) {
+        if (legend.series != null  && legend.number != null) {
+            //console.log(legend.series + '-'+ legend.number + '-' + legend.name);
+            return slugify(legend.series + '-' + legend.number + '-' + legend.name);
+        } else {
+            return slugify(legend.name);
+        }
+    }
+
     //const selectedTheme = ref(legendStore.theme);
     /*const selectedTheme = computed({ 
         get: () => legendStore.theme, 
@@ -163,6 +193,13 @@
         }
     }
 
+    //
+    /*watch(legend.name, (t) => {
+        console.info("watch toggle", t);
+        //collapse(t);
+    });*/
+
+
     // Simple validation of Loading JSON
     function validateJson(object) {
       if ( !object.name ||  !Array.isArray(object.cards)) {
@@ -172,6 +209,7 @@
     }
 
     function saveFile() {
+      console.log(legend.slug)  
       const blob = new Blob([JSON.stringify(legendStore.$state)], {
         type: "application/json"
       });
