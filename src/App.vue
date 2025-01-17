@@ -59,17 +59,6 @@
         }
     }
 
-    //const selectedTheme = ref(legendStore.theme);
-    /*const selectedTheme = computed({ 
-        get: () => legendStore.theme, 
-        set: (value) => legendStore.updateTheme(value), }
-    );*/
-
-    /*function updateTheme(){
-        legendStore.updateTheme(value);
-    }*/
-    //const legendDetail = computed(() => legendStore.getLegendDetail);
-
     const parentCardData = ref({
                 type: null,
                 name: null,
@@ -105,11 +94,10 @@
     function handleDelete(id) {
         if (window.confirm("Voulez-vous vraiment supprimer cette carte ?")) {
             legendStore.deleteCard(id);
-// TODO : find good new active card
+
             legendStore.activeCard(1);
-            parentCardData.value = legendStore.cards[0];/*.find(
-                i => i.id === legend.newCardOpenIndex
-            );*/
+            parentCardData.value = legendStore.cards[0];
+
             if(legendStore.cards.length === 0) {
                 parentCardData.value = {}
             }
@@ -194,13 +182,6 @@
             window.alert("Erreur lors du chargement du fichier");
         }
     }
-
-    //
-    /*watch(legend.name, (t) => {
-        console.info("watch toggle", t);
-        //collapse(t);
-    });*/
-
 
     // Simple validation of Loading JSON
     function validateJson(object) {
