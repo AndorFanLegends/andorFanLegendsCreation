@@ -38,6 +38,10 @@
         "apply": "Bewerbung",
         "cancel": "Cancel"
     },
+    "tips": {
+        "yearFormat": "Add just one year. Ex : 2014.",
+        "playerFormat": "1 (if for solo Hero); 2-4 (if legend for 2 to 4 Heros)"
+    },
     "cardName": "Name der Karte",
     "cardType": "Typ der Karte",
     "type": {

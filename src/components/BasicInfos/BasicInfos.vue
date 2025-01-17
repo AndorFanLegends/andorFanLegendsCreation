@@ -38,7 +38,7 @@ const legend = ref(props.legend);
                 required
                 hide-details
             ></v-text-field>
-            <small class="form-text text-muted">Add just one year. Ex : 2014. </small>
+            <small class="form-text text-muted">{{ $t('tips.yearFormat') }}</small>
         </v-col>
         <v-col cols="12">
             <v-text-field
@@ -48,7 +48,7 @@ const legend = ref(props.legend);
                 required
                 hide-details
             ></v-text-field>
-            <small class="form-text text-muted">1 (if for solo Hero); 2-4 (if legend for 2 to 4 Heros) </small>
+            <small class="form-text text-muted">{{ $t('tips.playerFormat') }}</small>
         </v-col>
         <v-col cols="12">
             <label class="v-label d-flex">{{ $t("difficulty") }}</label>

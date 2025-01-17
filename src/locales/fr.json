@@ -38,6 +38,10 @@
         "apply": "Appliquer",
         "cancel": "Annuler"
     },
+    "tips": {
+        "yearFormat": "Ajouter seulement une année. Exemple: 2014.",
+        "playerFormat": "Renseigner un chiffre, ou deux chiffres séparés par un tiret. Exemple:  1 (pouer 1 seul héros, 2-4 (si la légende est pour 2 à 4 héros), ..."
+    },
     "cardName": "Nom de la Carte",
     "cardType": "Type de Carte",
     "type": {
