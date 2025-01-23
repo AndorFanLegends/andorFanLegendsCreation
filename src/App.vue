@@ -2,12 +2,12 @@
     import {ref, reactive, computed, watch} from 'vue';
     import { useI18n } from "vue-i18n";
     import { saveAs } from "file-saver";
-    import MainInfos from  "./components/MainInfos/MainInfos";
-    import BasicInfos from "./components/BasicInfos/BasicInfos";
-    import CardsView from "./components/Cards/CardsView";
-    import SettingsView from "./components/SettingsView/SettingsView";
-    import PdfView from "./components/PdfView/PdfView";
-    import HowToView from "./components/HowToView/HowToView";
+    import MainInfos from  "./components/MainInfos/MainInfos.vue";
+    import BasicInfos from "./components/BasicInfos/BasicInfos.vue";
+    import CardsView from "./components/Cards/CardsView.vue";
+    import SettingsView from "./components/SettingsView/SettingsView.vue";
+    import PdfView from "./components/PdfView/PdfView.vue";
+    import HowToView from "./components/HowToView/HowToView.vue";
     import {slugify} from "./functions/slugify.js"
 
     // Interfaces
