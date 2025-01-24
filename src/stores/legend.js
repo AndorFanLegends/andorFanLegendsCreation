@@ -1,6 +1,6 @@
 
 import { defineStore} from 'pinia'; // , storeToRefs
-import nanoid from 'nanoid';
+import { nanoid } from 'nanoid';
 import { sorter, sorterInstruction } from '../functions/sortFunctions';
 import { blankLegend, sampleLegend, newCardTemplate } from '../functions/legendData';
 import {slugify} from "../functions/slugify";

@@ -15,7 +15,7 @@
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.2",
     "jspdf": "^2.5.2",
-    "nanoid": "2.1.11",
+    "nanoid": "^5.0.9",
     "pinia": "2.3.0",
     "pinia-plugin-persistedstate": "4.2.0",
     "rimraf": "4.4.1",
