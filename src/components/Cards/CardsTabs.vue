@@ -49,9 +49,9 @@
                         :key="card.id">
                         <td class="cardName">{{ card.name }}</td>
                         <td class="cardAction">
-                            <v-btn class="mx-2" small fab  dark density="compact" color="primary"
+                            <v-btn class="mx-1" size="x-small" fab  dark density="compact" color="primary"
                                 @click="handleEdit(card.id, cardData)">
-                                <v-icon small dark>mdi-pencil</v-icon>
+                                <v-icon x-small dark>mdi-pencil</v-icon>
                             </v-btn>
                             <v-btn fab  dark density="compact" small color="red"
                                 @click="handleDelete(card.id)">

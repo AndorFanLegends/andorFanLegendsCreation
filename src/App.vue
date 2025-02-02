@@ -302,7 +302,7 @@
                             <v-window-item value="cards">
                                 <v-row>
                                     <!--<v-navigation-drawer permanent height="100vh" position="left" >-->
-                                    <v-col cols="4" md="4">
+                                    <v-col cols="3" md="3">
                                         <p class="small-radio">
                                             <v-radio-group  v-model="legend.theme" inline label="Thème" name="Theme"> 
                                                 <v-radio v-bind:label="$t('classicalTheme')" value="classicalTheme"></v-radio>
@@ -324,20 +324,21 @@
                                                 :key="card.id">
                                                 <td class="cardName">{{ card.name }}</td>
                                                 <td class="cardAction">
-                                                    <v-btn class="mx-2" small fab  dark density="compact" color="primary"
+                                                    <v-btn size="x-small" density="default" fab dark color="primary"
                                                         @click="handleEdit(card.id)">
                                                         <v-icon small dark>mdi-pencil</v-icon>
-                                                    </v-btn>
-                                                    <v-btn fab  dark density="compact" small color="red"
+                                                    </v-btn>&nbsp;
+                                                    <v-btn size="x-small" density="default" color="red"
                                                         @click="handleDelete(card.id)">
-                                                        <v-icon small dark>mdi-delete</v-icon>
+                                                        <v-icon  dark>mdi-delete</v-icon>
+                                                        <!-- class="mx-1" fab dark density="compact" -->
                                                     </v-btn>
                                                 </td>
                                             </tr>
                                             </tbody>
                                         </v-table>
                                     </v-col>
-                                    <v-col cols="8" md="8">
+                                    <v-col cols="9" md="9">
                                         <CardsView :cardData="parentCardData" :name="legend.name" :series="legend.series" :number="legend.number" :type="legend.type" :theme="legend.theme" :formDisabled="formDisabled" />
                                     </v-col>
                                 </v-row>
