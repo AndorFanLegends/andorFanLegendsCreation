@@ -21,7 +21,7 @@
     "rimraf": "4.4.1",
     "vue": "^3.5.43",
     "vue-i18n": "9.14.2",
-    "vuetify": "3.7.6"
+    "vuetify": "^4.2.2"
   },
   "devDependencies": {
     "@mdi/font": "^7.4.47",
